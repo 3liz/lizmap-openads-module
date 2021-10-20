@@ -1,0 +1,36 @@
+{
+    "name": "lizmap/lizmap-openads-module",
+    "type": "jelix-module",
+    "description": "Jelix module for Lizmap, enabling interactions with OpenADS.",
+    "keywords": [
+        "module",
+        "jelix",
+        "lizmap",
+        "openads"
+    ],
+    "homepage": "https://www.3liz.com/",
+    "license": "MPL-2.0",
+    "authors": [
+        {
+            "name": "3Liz",
+            "email": "info@3liz.com"
+        }
+    ],
+    "require": {},
+    "minimum-stability": "stable",
+    "extra": {
+        "jelix": {
+            "modules": [
+                "openads/"
+            ],
+            "autoconfig-access-16": {
+                "lizmap@3liz.com": {
+                    "openads": {
+                        "__global": 1,
+                        "index": 2
+                    }
+                }
+            }
+        }
+    }
+}

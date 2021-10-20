@@ -3,7 +3,7 @@
 $finder = PhpCsFixer\Finder::create()
           //->notPath('src/Symfony/Component/Translation/Tests/fixtures/resources.php')
           ->in(array(
-                __DIR__.'/pgrouting',
+                __DIR__.'/openads',
               ))
           //->exclude(__DIR__.'/lizmap/modules/proj4php/classes/')
         ;

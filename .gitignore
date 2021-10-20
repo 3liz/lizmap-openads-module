@@ -25,6 +25,11 @@ docs/CHANGELOG.md
 
 .ignore
 
+# Tests
+tests/lizmap/www
+tests/lizmap/var
+tests/.env
+
 # VSCode ou Codium
 *.code-workspace
 

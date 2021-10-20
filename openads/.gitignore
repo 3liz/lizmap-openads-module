@@ -1,0 +1,33 @@
+# OSX garbage
+.DS_Store
+
+# IDE
+.idea/
+
+# Python SQL tests
+*.pyc
+.venv
+venv
+
+# PHP
+.php_cs.cache
+
+# PHP Doc
+output/
+.phpdoc
+
+factory.manifest
+
+# MkDocs
+build/
+docs/CONTRIBUTING.md
+docs/CHANGELOG.md
+
+.ignore
+
+# VSCode ou Codium
+*.code-workspace
+
+# hidden files
+*.bak
+*~

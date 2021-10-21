@@ -5,13 +5,12 @@
  *
  * @see      https://3liz.com
  *
- * @license    GPL 3
+ * @license   GPL 3
  */
-class openadsModuleInstaller extends jInstallerModule
+class openadsModuleUpgrader extends jInstallerModule
 {
     public function install()
     {
-
         // Copy entry point
         // Needed in the upgrade process
         // if the variable $mapping has changed

@@ -72,6 +72,40 @@ class apiController extends jController
             );
         }
 
+        // Check project layers and schema
+        $schema = null;
+        $layers_required = array('parcelles','dossiers_openads');
+        foreach($layers_required as $lname)
+        {
+            $layer = $lizmap_project->findLayerByName($lname);
+            if (!$layer) {
+                return array(
+                    '404',
+                    'error',
+                    'Layer '. $lname .' missing in project',
+                );
+            }
+            $qgisLayer = $lizmap_project->getLayer($layer->id);
+            if (!$qgisLayer) {
+                return array(
+                    '404',
+                    'error',
+                    'Layer '. $lname .' missing in project',
+                );
+            }
+
+            $params = $qgisLayer->getDatasourceParameters();
+            if (is_null($schema)) {
+                $schema = $params->schema;
+            } else if ($params->schema != $schema) {
+                return array(
+                    '404',
+                    'error',
+                    'The layer is not from the correct schema',
+                );
+            }
+        }
+
         // Check the authenticated user can access to the project
         if (!$lizmap_project->checkAcl($this->user->login)) {
             return array(

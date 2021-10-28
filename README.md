@@ -1,3 +1,3 @@
 # lizmap-openads-module
 
-Module lizmap pour liaison avec le logiciel OpenADS
+Module [Lizmap](https://www.lizmap.com/) pour liaison avec le logiciel [OpenADS](https://www.atreal.fr/applications/catalogue/logiciel-urbanisme).

@@ -17,8 +17,6 @@ class apiController extends jController
         '500' => 'Internal Server Error',
     );
 
-    protected $user;
-
     protected $lizmap_project;
 
     /**
@@ -30,6 +28,8 @@ class apiController extends jController
         if (isset($_SERVER['PHP_AUTH_USER'])) {
             return jAuth::login($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']);
         }
+
+        return false;
     }
 
     // Check if the given project in parameter is valid and accessible
@@ -46,7 +46,7 @@ class apiController extends jController
         }
 
         // Check project name is openads
-        if (strtolower(explode($project_key, '~')[1]) !== 'openads') {
+        if (strtolower(explode('~', $project_key)[1]) !== 'openads') {
             return array(
                 '404',
                 'error',
@@ -74,14 +74,14 @@ class apiController extends jController
 
         // Check project layers and schema
         $schema = null;
-        $layers_required = array('parcelles','dossiers_openads');
+        $layers_required = array('parcelles', 'dossiers_openads');
         foreach ($layers_required as $lname) {
             $layer = $lizmap_project->findLayerByName($lname);
             if (!$layer) {
                 return array(
                     '404',
                     'error',
-                    'Layer '. $lname .' missing in project',
+                    'Layer '.$lname.' missing in project',
                 );
             }
             $qgisLayer = $lizmap_project->getLayer($layer->id);
@@ -89,7 +89,7 @@ class apiController extends jController
                 return array(
                     '404',
                     'error',
-                    'Layer '. $lname .' missing in project',
+                    'Layer '.$lname.' missing in project',
                 );
             }
 
@@ -105,8 +105,8 @@ class apiController extends jController
             }
         }
 
-        // Check the authenticated user can access to the project
-        if (!$lizmap_project->checkAcl($this->user->login)) {
+        // Check access to the project
+        if (!$lizmap_project->checkAcl()) {
             return array(
                 '403',
                 'error',

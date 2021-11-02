@@ -75,8 +75,7 @@ class apiController extends jController
         // Check project layers and schema
         $schema = null;
         $layers_required = array('parcelles','dossiers_openads');
-        foreach($layers_required as $lname)
-        {
+        foreach ($layers_required as $lname) {
             $layer = $lizmap_project->findLayerByName($lname);
             if (!$layer) {
                 return array(
@@ -97,7 +96,7 @@ class apiController extends jController
             $params = $qgisLayer->getDatasourceParameters();
             if (is_null($schema)) {
                 $schema = $params->schema;
-            } else if ($params->schema != $schema) {
+            } elseif ($params->schema != $schema) {
                 return array(
                     '404',
                     'error',

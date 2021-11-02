@@ -8,14 +8,15 @@
 * @license    All rights reserved
 */
 
-class defaultCtrl extends jController {
+class defaultCtrl extends jController
+{
     /**
     *
     */
-    function index() {
+    public function index()
+    {
         $rep = $this->getResponse('html');
 
         return $rep;
     }
 }
-

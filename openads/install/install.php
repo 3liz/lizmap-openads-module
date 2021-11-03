@@ -15,7 +15,6 @@ class openadsModuleInstaller extends jInstallerModule
         // Copy entry point
         // Needed in the upgrade process
         // if the variable $mapping has changed
-        $www_path = jApp::wwwPath('openads.php');
-        $this->copyFile('openads.php', $www_path);
+        $this->createEntryPoint('openads.php', 'config.ini.php', 'openads');
     }
 }

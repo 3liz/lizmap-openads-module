@@ -17,22 +17,24 @@ checkAppOpened();
 // mapping of url to basic url (/module/controller/method)
 
 $mapping = array(
-    'services/:projectKey/parcelles/:ids_parcelles' => array(
+    '/services/:projectKey/parcelles/:ids_parcelles' => array(
         'GET' => 'openads/parcelles/index',
     ),
-    'services/:projectKey/communes/:id_commune/contraintes' => array(
+    '/services/:projectKey/communes/:id_commune/contraintes' => array(
         'GET' => 'openads/communes/contraintes',
     ),
-    'services/:projectKey/dossiers/:id_dossier/emprise' => array(
+    '/services/:projectKey/dossiers/:id_dossier/emprise' => array(
         'POST' => 'openads/dossiers/emprise',
     ),
-    'services/:projectKey/dossiers/:id_dossier/centroide' => array(
+    '/services/:projectKey/dossiers/:id_dossier/centroide' => array(
         'POST' => 'openads/dossiers/centroide',
     ),
-    'services/:projectKey/dossiers/:id_dossier/contraintes' => array(
+    '/services/:projectKey/dossiers/:id_dossier/contraintes' => array(
         'GET' => 'openads/dossiers/contraintes',
     ),
 );
+
+jApp::loadConfig('openads/config.ini.php');
 
 jApp::setCoord(new jCoordinator());
 jApp::coord()->process(new \openADS\Request($mapping));

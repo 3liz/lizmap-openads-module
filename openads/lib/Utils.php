@@ -27,6 +27,14 @@ class Utils
             //     RETURNING id_parcelles
             // ',
         ),
+        'commune' => array(
+            'get' => '
+                SELECT DISTINCT c.id_contraintes, c.libelle, c."texte", c.groupe, c.sous_groupe
+                FROM !schema!.contraintes c
+                JOIN  !schema!.geo_contraintes gc ON c.id_contraintes=gc.id_contraintes
+                WHERE gc.codeinsee = $1;
+            ',
+        ),
     );
 
     // Query database and return json data

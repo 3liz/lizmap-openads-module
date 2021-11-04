@@ -57,4 +57,9 @@ RESULT=$(curl -s -X GET -H 'Content-Type: application/json' -u admin:admin "$BAS
 # Test with good login and bad ids_parcelle
 RESULT=$(curl -s -X GET -H 'Content-Type: application/json' -u admin:admin "$BASEURL/services/openads~openads/parcelles/800016") && echo $RESULT
 
+# COMMUNES
+
+# Test communes with conde insee
+RESULT=$(curl -s -X GET -H 'Content-Type: application/json' -u admin:admin "$BASEURL/services/openads~openads/communes/80016/contraintes") && echo $RESULT
+
 ```

@@ -49,13 +49,13 @@ BASEURL="http://lizmap.localhost/openads.php"
 ###
 
 # Test avec mauvais mot de passe
-RESULT=$(curl -s -X GET -H 'Content-Type: application/json' -u admin:badpassword "$BASEURL/services/openads~openads/parcelles/800016%20%20%200AK0145") && echo $RESULT
+RESULT=$(curl -s -X GET -H 'Content-Type: application/json' -u admin:badpassword "$BASEURL/services/openads~openads/parcelles/80016%20%20%200AK0145") && echo $RESULT
 
 # Test avec bon login et bons ids_parcelles
-RESULT=$(curl -s -X GET -H 'Content-Type: application/json' -u admin:admin "$BASEURL/services/openads~openads/parcelles/8000160000AK0145") && echo $RESULT
+RESULT=$(curl -s -X GET -H 'Content-Type: application/json' -u admin:admin "$BASEURL/services/openads~openads/parcelles/800160000AK0145") && echo $RESULT
 
 # Test avec bon login et mauvais ids_parcelle
-RESULT=$(curl -s -X GET -H 'Content-Type: application/json' -u admin:admin "$BASEURL/services/openads~openads/parcelles/800016") && echo $RESULT
+RESULT=$(curl -s -X GET -H 'Content-Type: application/json' -u admin:admin "$BASEURL/services/openads~openads/parcelles/80016") && echo $RESULT
 
 # COMMUNES
 

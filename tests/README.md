@@ -1,27 +1,27 @@
-# Run Lizmap stack with docker-compose
+# Démarrer la stack Lizmap + openADS avec docker-compose
 
-Steps:
+Étapes:
 
-- Launch Lizmap with docker-compose
+- Démarrer Lizmap + openADS with docker-compose
     ```
-    # Clean previous versions (optional)
+    # Supprimer les versions précédentes (optionnel)
     make clean
 
-    # Run the different services
+    # Lancer les différents services
     make run
     ```
 
-- A simple `openads` project is present but you have to set rights in administration to view it.
+- Un simple projet `openads` est present mais vous devez définir les droits dans l'administration Lizmap afin de le consulter.
 
-- Open your browser at `http://localhost:9090`
+- Ouvrez votre navigateur à `http://localhost:9090`
 
-For more information, refer to the [docker-compose documentation](https://docs.docker.com/compose/)
+Pour plus d'information, veuillez vous référer à la [documentation docker-compose](https://docs.docker.com/compose/)
 
-## Access to the dockerized PostgreSQL instance
+## Accès à l'instance PostgreSQL dans docker
 
-You can access the docker PostgreSQL test database `lizmap` from your host by configuring a
-[service file](https://docs.qgis.org/latest/en/docs/user_manual/managing_data_source/opening_data.html#postgresql-service-connection-file).
-The service file can be stored in your user home `~/.pg_service.conf` and should contains this section
+Vous pouvez accéder à la base de test PostgreSQL `lizmap` dans docker depuis votre hôte en configurant un
+[fichier de service](https://docs.qgis.org/latest/fr/docs/user_manual/managing_data_source/opening_data.html#postgresql-service-connection-file).
+Le fichier de service peut être enregistré dans votre home `~/.pg_service.conf` et doit contenir cette section
 
 ```ini
 [lizmap-openads]
@@ -32,8 +32,8 @@ user=lizmap
 password=lizmap1234!
 ```
 
-Then you can use any PostgreSQL client (psql, QGIS, PgAdmin, DBeaver) and use the `service`
-instead of the other credentials (host, port, database name, user and password).
+Vous pouvez ensuite utiliser un client PostgreSQL (psql, QGIS, PgAdmin, DBeaver) et utiliser le `service`
+au lieu des identifiants classiques (hôte, port, nom de la base de donnée, login et mot de passe).
 
 ```bash
 psql service=lizmap-openads

@@ -4,13 +4,13 @@ Module [Lizmap](https://www.lizmap.com/) pour liaison avec le logiciel [OpenADS]
 
 # Installation
 
-## Lizmap Web Client openADS module
+## Module openADS pour Lizmap Web Client 
 
-NB: all the path given are relative to your Lizmap Web Client instance folder.
+NB: tous les chemins ci-dessous sont relatifs au dossier de Lizmap Web Client.
 
-* Copy the `openads` directory inside the `lizmap/lizmap-modules/` of a working Lizmap Web Client instance to have a new `lizmap/lizmap-modules/openads/` folder containing the files `module.xml`, `events.xml`, and folders.
+* Copier le répertoire `openads` dans le répertoire `lizmap/lizmap-modules/` d'une instance Lizmap Web Client afin d'avoir un répertoire `lizmap/lizmap-modules/openads/` contenant les fichiers `module.xml`, `events.xml`, et d'autres répertoires.
 
-* Then modify the file `lizmap/var/config/localconfig.ini.php` to add `openads.access=2` in the `[modules]` section, such as
+* Puis modifier le fichier `lizmap/var/config/localconfig.ini.php` en ajoutant `openads.access=2` dans la section `[modules]`, de cette façon
 
 ```ini
 [modules]
@@ -18,7 +18,7 @@ openads.access=2
 
 ```
 
-* Then you need to run the Lizmap installer
+* Ensuite exécuter l'installeur Lizmap
 
 ```bash
 lizmap/install/set_rights.sh
@@ -26,15 +26,15 @@ lizmap/install/clean_vartmp.sh
 php lizmap/install/installer.php
 ```
 
-## Test the API
+## Tester l'API
 
-Then you are ready to test. For example with curl (you can pass basic credentials to curl command easily).
+Vous pouvez ensuite tester avec `curl` et une authentification basique.
 ```bash
 # EXEMPLE
-curl -u username:password https://example.com
+curl -u username:password https://exemple.com
 ```
 
-In the following examples, we use `http://lizmap.localhost/` as the base URL:
+Dans les exemples suivant, nous utilisons comme ULR de base `http://lizmap.localhost/`:
 
 * Define the API base URL:
 
@@ -48,18 +48,18 @@ BASEURL="http://lizmap.localhost/openads.php"
 # PARCELLES
 ###
 
-# Test with bad login
-RESULT=$(curl -s -X GET -H 'Content-Type: application/json' -u admin:admi "$BASEURL/services/openads~openads/parcelles/800016%20%20%200AK0145") && echo $RESULT
+# Test avec mauvais mot de passe
+RESULT=$(curl -s -X GET -H 'Content-Type: application/json' -u admin:badpassword "$BASEURL/services/openads~openads/parcelles/800016%20%20%200AK0145") && echo $RESULT
 
-# Test with good login and good ids_parcelles
+# Test avec bon login et bons ids_parcelles
 RESULT=$(curl -s -X GET -H 'Content-Type: application/json' -u admin:admin "$BASEURL/services/openads~openads/parcelles/8000160000AK0145") && echo $RESULT
 
-# Test with good login and bad ids_parcelle
+# Test avec bon login et mauvais ids_parcelle
 RESULT=$(curl -s -X GET -H 'Content-Type: application/json' -u admin:admin "$BASEURL/services/openads~openads/parcelles/800016") && echo $RESULT
 
 # COMMUNES
 
-# Test communes with conde insee
+# Test requête communes avec code insee
 RESULT=$(curl -s -X GET -H 'Content-Type: application/json' -u admin:admin "$BASEURL/services/openads~openads/communes/80016/contraintes") && echo $RESULT
 
 ```

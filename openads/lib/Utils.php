@@ -35,6 +35,12 @@ class Utils
                 WHERE gc.codeinsee = $1;
             ',
         ),
+        'emprise' => array(
+            'get' => '
+                
+            ',
+        )
+
     );
 
     // Query database and return json data
@@ -48,12 +54,16 @@ class Utils
             $resultset->execute($params);
             $data = $resultset->fetchAll();
             $cnx->commit();
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $cnx->rollback();
-            $data = null;
+            return array(
+                'error',
+                'A database error occured while executing the query',
+                null
+            );
         }
 
-        return $data;
+        return array('success', 'Query executed with success' ,$data);
     }
 
     /**
@@ -67,29 +77,26 @@ class Utils
      *
      * @return array or null
      */
-    public function getObjects($key, $schema, $get_params = null, $profile = 'openads', $method = 'get')
+    public function execQuery($sql, $schema, $profile, $message, $params = null)
     {
         // Get object
-        $sql = $this->sql[$key][$method];
         $sql = str_replace('!schema!', $schema, $sql);
-        if ($key == 'parcelles') {
-            $sql .= '(';
-            for ($i = 0; $i < count($get_params); ++$i) {
-                $numParam = $i + 1;
-                if ($i == 0) {
-                    $sql .= '$'.$numParam;
-                } else {
-                    $sql .= ',$'.$numParam;
-                }
-            }
-            $sql .= ')';
-        }
-        $data = $this->query($sql, $get_params, $profile);
-        if (!is_array($data)) {
-            return null;
+
+
+        list($status, $msgError, $data) = $this->query($sql, $params, $profile);
+        if ($status == 'error') {
+            return array(
+                'error',
+                $msgError . ' ' . $message,
+                null
+            );
         }
 
-        return $data;
+        return array(
+            'success',
+            '',
+            $data
+        );
     }
 
     /**

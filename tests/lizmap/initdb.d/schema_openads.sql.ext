@@ -17,20 +17,20 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: openads; Type: SCHEMA; Schema: -; Owner: postgres
+-- Name: openads; Type: SCHEMA; Schema: -; Owner: lizmap
 --
 
 CREATE SCHEMA openads;
 
 
-ALTER SCHEMA openads OWNER TO postgres;
+ALTER SCHEMA openads OWNER TO lizmap;
 
 SET default_tablespace = '';
 
 SET default_with_oids = false;
 
 --
--- Name: communes; Type: TABLE; Schema: openads; Owner: postgres
+-- Name: communes; Type: TABLE; Schema: openads; Owner: lizmap
 --
 
 CREATE TABLE openads.communes (
@@ -48,17 +48,17 @@ CREATE TABLE openads.communes (
 );
 
 
-ALTER TABLE openads.communes OWNER TO postgres;
+ALTER TABLE openads.communes OWNER TO lizmap;
 
 --
--- Name: TABLE communes; Type: COMMENT; Schema: openads; Owner: postgres
+-- Name: TABLE communes; Type: COMMENT; Schema: openads; Owner: lizmap
 --
 
 COMMENT ON TABLE openads.communes IS 'Contient les communes';
 
 
 --
--- Name: communes_id_communes_seq; Type: SEQUENCE; Schema: openads; Owner: postgres
+-- Name: communes_id_communes_seq; Type: SEQUENCE; Schema: openads; Owner: lizmap
 --
 
 CREATE SEQUENCE openads.communes_id_communes_seq
@@ -69,17 +69,17 @@ CREATE SEQUENCE openads.communes_id_communes_seq
     CACHE 1;
 
 
-ALTER TABLE openads.communes_id_communes_seq OWNER TO postgres;
+ALTER TABLE openads.communes_id_communes_seq OWNER TO lizmap;
 
 --
--- Name: communes_id_communes_seq; Type: SEQUENCE OWNED BY; Schema: openads; Owner: postgres
+-- Name: communes_id_communes_seq; Type: SEQUENCE OWNED BY; Schema: openads; Owner: lizmap
 --
 
 ALTER SEQUENCE openads.communes_id_communes_seq OWNED BY openads.communes.id_communes;
 
 
 --
--- Name: contraintes; Type: TABLE; Schema: openads; Owner: postgres
+-- Name: contraintes; Type: TABLE; Schema: openads; Owner: lizmap
 --
 
 CREATE TABLE openads.contraintes (
@@ -91,17 +91,17 @@ CREATE TABLE openads.contraintes (
 );
 
 
-ALTER TABLE openads.contraintes OWNER TO postgres;
+ALTER TABLE openads.contraintes OWNER TO lizmap;
 
 --
--- Name: TABLE contraintes; Type: COMMENT; Schema: openads; Owner: postgres
+-- Name: TABLE contraintes; Type: COMMENT; Schema: openads; Owner: lizmap
 --
 
 COMMENT ON TABLE openads.contraintes IS 'Permet de récupérer les contraintes par groupe';
 
 
 --
--- Name: contraintes_id_contraintes_seq; Type: SEQUENCE; Schema: openads; Owner: postgres
+-- Name: contraintes_id_contraintes_seq; Type: SEQUENCE; Schema: openads; Owner: lizmap
 --
 
 CREATE SEQUENCE openads.contraintes_id_contraintes_seq
@@ -112,17 +112,17 @@ CREATE SEQUENCE openads.contraintes_id_contraintes_seq
     CACHE 1;
 
 
-ALTER TABLE openads.contraintes_id_contraintes_seq OWNER TO postgres;
+ALTER TABLE openads.contraintes_id_contraintes_seq OWNER TO lizmap;
 
 --
--- Name: contraintes_id_contraintes_seq; Type: SEQUENCE OWNED BY; Schema: openads; Owner: postgres
+-- Name: contraintes_id_contraintes_seq; Type: SEQUENCE OWNED BY; Schema: openads; Owner: lizmap
 --
 
 ALTER SEQUENCE openads.contraintes_id_contraintes_seq OWNED BY openads.contraintes.id_contraintes;
 
 
 --
--- Name: dossiers_openads; Type: TABLE; Schema: openads; Owner: postgres
+-- Name: dossiers_openads; Type: TABLE; Schema: openads; Owner: lizmap
 --
 
 CREATE TABLE openads.dossiers_openads (
@@ -137,17 +137,17 @@ CREATE TABLE openads.dossiers_openads (
 );
 
 
-ALTER TABLE openads.dossiers_openads OWNER TO postgres;
+ALTER TABLE openads.dossiers_openads OWNER TO lizmap;
 
 --
--- Name: TABLE dossiers_openads; Type: COMMENT; Schema: openads; Owner: postgres
+-- Name: TABLE dossiers_openads; Type: COMMENT; Schema: openads; Owner: lizmap
 --
 
 COMMENT ON TABLE openads.dossiers_openads IS 'Stocke les dossiers créés automatiquement par openADS associés à une liste de parcelles, une emprise et un centroïde';
 
 
 --
--- Name: dossiers_openads_id_dossiers_openads_seq; Type: SEQUENCE; Schema: openads; Owner: postgres
+-- Name: dossiers_openads_id_dossiers_openads_seq; Type: SEQUENCE; Schema: openads; Owner: lizmap
 --
 
 CREATE SEQUENCE openads.dossiers_openads_id_dossiers_openads_seq
@@ -158,17 +158,17 @@ CREATE SEQUENCE openads.dossiers_openads_id_dossiers_openads_seq
     CACHE 1;
 
 
-ALTER TABLE openads.dossiers_openads_id_dossiers_openads_seq OWNER TO postgres;
+ALTER TABLE openads.dossiers_openads_id_dossiers_openads_seq OWNER TO lizmap;
 
 --
--- Name: dossiers_openads_id_dossiers_openads_seq; Type: SEQUENCE OWNED BY; Schema: openads; Owner: postgres
+-- Name: dossiers_openads_id_dossiers_openads_seq; Type: SEQUENCE OWNED BY; Schema: openads; Owner: lizmap
 --
 
 ALTER SEQUENCE openads.dossiers_openads_id_dossiers_openads_seq OWNED BY openads.dossiers_openads.id_dossiers_openads;
 
 
 --
--- Name: dossiers_sig; Type: TABLE; Schema: openads; Owner: postgres
+-- Name: dossiers_sig; Type: TABLE; Schema: openads; Owner: lizmap
 --
 
 CREATE TABLE openads.dossiers_sig (
@@ -185,17 +185,17 @@ CREATE TABLE openads.dossiers_sig (
 );
 
 
-ALTER TABLE openads.dossiers_sig OWNER TO postgres;
+ALTER TABLE openads.dossiers_sig OWNER TO lizmap;
 
 --
--- Name: TABLE dossiers_sig; Type: COMMENT; Schema: openads; Owner: postgres
+-- Name: TABLE dossiers_sig; Type: COMMENT; Schema: openads; Owner: lizmap
 --
 
 COMMENT ON TABLE openads.dossiers_sig IS 'Stocke les dossiers spécifiques au SIG, notamment ceux dessinés à la main par les utilisateurs';
 
 
 --
--- Name: dossiers_sig_id_dossiers_sig_seq; Type: SEQUENCE; Schema: openads; Owner: postgres
+-- Name: dossiers_sig_id_dossiers_sig_seq; Type: SEQUENCE; Schema: openads; Owner: lizmap
 --
 
 CREATE SEQUENCE openads.dossiers_sig_id_dossiers_sig_seq
@@ -206,17 +206,17 @@ CREATE SEQUENCE openads.dossiers_sig_id_dossiers_sig_seq
     CACHE 1;
 
 
-ALTER TABLE openads.dossiers_sig_id_dossiers_sig_seq OWNER TO postgres;
+ALTER TABLE openads.dossiers_sig_id_dossiers_sig_seq OWNER TO lizmap;
 
 --
--- Name: dossiers_sig_id_dossiers_sig_seq; Type: SEQUENCE OWNED BY; Schema: openads; Owner: postgres
+-- Name: dossiers_sig_id_dossiers_sig_seq; Type: SEQUENCE OWNED BY; Schema: openads; Owner: lizmap
 --
 
 ALTER SEQUENCE openads.dossiers_sig_id_dossiers_sig_seq OWNED BY openads.dossiers_sig.id_dossiers_sig;
 
 
 --
--- Name: geo_contraintes; Type: TABLE; Schema: openads; Owner: postgres
+-- Name: geo_contraintes; Type: TABLE; Schema: openads; Owner: lizmap
 --
 
 CREATE TABLE openads.geo_contraintes (
@@ -228,17 +228,17 @@ CREATE TABLE openads.geo_contraintes (
 );
 
 
-ALTER TABLE openads.geo_contraintes OWNER TO postgres;
+ALTER TABLE openads.geo_contraintes OWNER TO lizmap;
 
 --
--- Name: TABLE geo_contraintes; Type: COMMENT; Schema: openads; Owner: postgres
+-- Name: TABLE geo_contraintes; Type: COMMENT; Schema: openads; Owner: lizmap
 --
 
 COMMENT ON TABLE openads.geo_contraintes IS 'Complémentaire pour les contraintes avec la géométrie';
 
 
 --
--- Name: geo_contraintes_id_geo_contraintes_seq; Type: SEQUENCE; Schema: openads; Owner: postgres
+-- Name: geo_contraintes_id_geo_contraintes_seq; Type: SEQUENCE; Schema: openads; Owner: lizmap
 --
 
 CREATE SEQUENCE openads.geo_contraintes_id_geo_contraintes_seq
@@ -249,17 +249,17 @@ CREATE SEQUENCE openads.geo_contraintes_id_geo_contraintes_seq
     CACHE 1;
 
 
-ALTER TABLE openads.geo_contraintes_id_geo_contraintes_seq OWNER TO postgres;
+ALTER TABLE openads.geo_contraintes_id_geo_contraintes_seq OWNER TO lizmap;
 
 --
--- Name: geo_contraintes_id_geo_contraintes_seq; Type: SEQUENCE OWNED BY; Schema: openads; Owner: postgres
+-- Name: geo_contraintes_id_geo_contraintes_seq; Type: SEQUENCE OWNED BY; Schema: openads; Owner: lizmap
 --
 
 ALTER SEQUENCE openads.geo_contraintes_id_geo_contraintes_seq OWNED BY openads.geo_contraintes.id_geo_contraintes;
 
 
 --
--- Name: parcelles; Type: TABLE; Schema: openads; Owner: postgres
+-- Name: parcelles; Type: TABLE; Schema: openads; Owner: lizmap
 --
 
 CREATE TABLE openads.parcelles (
@@ -279,17 +279,17 @@ CREATE TABLE openads.parcelles (
 );
 
 
-ALTER TABLE openads.parcelles OWNER TO postgres;
+ALTER TABLE openads.parcelles OWNER TO lizmap;
 
 --
--- Name: TABLE parcelles; Type: COMMENT; Schema: openads; Owner: postgres
+-- Name: TABLE parcelles; Type: COMMENT; Schema: openads; Owner: lizmap
 --
 
 COMMENT ON TABLE openads.parcelles IS 'Contient les parcelles';
 
 
 --
--- Name: parcelles_id_parcelles_seq; Type: SEQUENCE; Schema: openads; Owner: postgres
+-- Name: parcelles_id_parcelles_seq; Type: SEQUENCE; Schema: openads; Owner: lizmap
 --
 
 CREATE SEQUENCE openads.parcelles_id_parcelles_seq
@@ -300,17 +300,17 @@ CREATE SEQUENCE openads.parcelles_id_parcelles_seq
     CACHE 1;
 
 
-ALTER TABLE openads.parcelles_id_parcelles_seq OWNER TO postgres;
+ALTER TABLE openads.parcelles_id_parcelles_seq OWNER TO lizmap;
 
 --
--- Name: parcelles_id_parcelles_seq; Type: SEQUENCE OWNED BY; Schema: openads; Owner: postgres
+-- Name: parcelles_id_parcelles_seq; Type: SEQUENCE OWNED BY; Schema: openads; Owner: lizmap
 --
 
 ALTER SEQUENCE openads.parcelles_id_parcelles_seq OWNED BY openads.parcelles.id_parcelles;
 
 
 --
--- Name: qgis_plugin; Type: TABLE; Schema: openads; Owner: postgres
+-- Name: qgis_plugin; Type: TABLE; Schema: openads; Owner: lizmap
 --
 
 CREATE TABLE openads.qgis_plugin (
@@ -321,59 +321,59 @@ CREATE TABLE openads.qgis_plugin (
 );
 
 
-ALTER TABLE openads.qgis_plugin OWNER TO postgres;
+ALTER TABLE openads.qgis_plugin OWNER TO lizmap;
 
 --
--- Name: TABLE qgis_plugin; Type: COMMENT; Schema: openads; Owner: postgres
+-- Name: TABLE qgis_plugin; Type: COMMENT; Schema: openads; Owner: lizmap
 --
 
 COMMENT ON TABLE openads.qgis_plugin IS 'Version and date of the database structure. Useful for database structure and glossary data migrations between the plugin versions by the QGIS plugin openads';
 
 
 --
--- Name: communes id_communes; Type: DEFAULT; Schema: openads; Owner: postgres
+-- Name: communes id_communes; Type: DEFAULT; Schema: openads; Owner: lizmap
 --
 
 ALTER TABLE ONLY openads.communes ALTER COLUMN id_communes SET DEFAULT nextval('openads.communes_id_communes_seq'::regclass);
 
 
 --
--- Name: contraintes id_contraintes; Type: DEFAULT; Schema: openads; Owner: postgres
+-- Name: contraintes id_contraintes; Type: DEFAULT; Schema: openads; Owner: lizmap
 --
 
 ALTER TABLE ONLY openads.contraintes ALTER COLUMN id_contraintes SET DEFAULT nextval('openads.contraintes_id_contraintes_seq'::regclass);
 
 
 --
--- Name: dossiers_openads id_dossiers_openads; Type: DEFAULT; Schema: openads; Owner: postgres
+-- Name: dossiers_openads id_dossiers_openads; Type: DEFAULT; Schema: openads; Owner: lizmap
 --
 
 ALTER TABLE ONLY openads.dossiers_openads ALTER COLUMN id_dossiers_openads SET DEFAULT nextval('openads.dossiers_openads_id_dossiers_openads_seq'::regclass);
 
 
 --
--- Name: dossiers_sig id_dossiers_sig; Type: DEFAULT; Schema: openads; Owner: postgres
+-- Name: dossiers_sig id_dossiers_sig; Type: DEFAULT; Schema: openads; Owner: lizmap
 --
 
 ALTER TABLE ONLY openads.dossiers_sig ALTER COLUMN id_dossiers_sig SET DEFAULT nextval('openads.dossiers_sig_id_dossiers_sig_seq'::regclass);
 
 
 --
--- Name: geo_contraintes id_geo_contraintes; Type: DEFAULT; Schema: openads; Owner: postgres
+-- Name: geo_contraintes id_geo_contraintes; Type: DEFAULT; Schema: openads; Owner: lizmap
 --
 
 ALTER TABLE ONLY openads.geo_contraintes ALTER COLUMN id_geo_contraintes SET DEFAULT nextval('openads.geo_contraintes_id_geo_contraintes_seq'::regclass);
 
 
 --
--- Name: parcelles id_parcelles; Type: DEFAULT; Schema: openads; Owner: postgres
+-- Name: parcelles id_parcelles; Type: DEFAULT; Schema: openads; Owner: lizmap
 --
 
 ALTER TABLE ONLY openads.parcelles ALTER COLUMN id_parcelles SET DEFAULT nextval('openads.parcelles_id_parcelles_seq'::regclass);
 
 
 --
--- Data for Name: communes; Type: TABLE DATA; Schema: openads; Owner: postgres
+-- Data for Name: communes; Type: TABLE DATA; Schema: openads; Owner: lizmap
 --
 
 COPY openads.communes (id_communes, anneemajic, ccodep, codcomm, nom, codeinsee, created_user, created_date, last_edited_user, last_edited_date, geom) FROM stdin;
@@ -382,7 +382,7 @@ COPY openads.communes (id_communes, anneemajic, ccodep, codcomm, nom, codeinsee,
 
 
 --
--- Data for Name: contraintes; Type: TABLE DATA; Schema: openads; Owner: postgres
+-- Data for Name: contraintes; Type: TABLE DATA; Schema: openads; Owner: lizmap
 --
 
 COPY openads.contraintes (id_contraintes, libelle, texte, groupe, sous_groupe) FROM stdin;
@@ -454,7 +454,7 @@ COPY openads.contraintes (id_contraintes, libelle, texte, groupe, sous_groupe) F
 
 
 --
--- Data for Name: dossiers_openads; Type: TABLE DATA; Schema: openads; Owner: postgres
+-- Data for Name: dossiers_openads; Type: TABLE DATA; Schema: openads; Owner: lizmap
 --
 
 COPY openads.dossiers_openads (id_dossiers_openads, codeinsee, numero, parcelles, x, y, dossier_importe_geosig, geom) FROM stdin;
@@ -463,7 +463,7 @@ COPY openads.dossiers_openads (id_dossiers_openads, codeinsee, numero, parcelles
 
 
 --
--- Data for Name: dossiers_sig; Type: TABLE DATA; Schema: openads; Owner: postgres
+-- Data for Name: dossiers_sig; Type: TABLE DATA; Schema: openads; Owner: lizmap
 --
 
 COPY openads.dossiers_sig (id_dossiers_sig, codeinsee, numero, parcelles, dossier_importe_geosig, created_user, created_date, last_edited_user, last_edited_date, geom) FROM stdin;
@@ -471,7 +471,7 @@ COPY openads.dossiers_sig (id_dossiers_sig, codeinsee, numero, parcelles, dossie
 
 
 --
--- Data for Name: geo_contraintes; Type: TABLE DATA; Schema: openads; Owner: postgres
+-- Data for Name: geo_contraintes; Type: TABLE DATA; Schema: openads; Owner: lizmap
 --
 
 COPY openads.geo_contraintes (id_geo_contraintes, id_contraintes, texte, codeinsee, geom) FROM stdin;
@@ -553,7 +553,7 @@ COPY openads.geo_contraintes (id_geo_contraintes, id_contraintes, texte, codeins
 
 
 --
--- Data for Name: parcelles; Type: TABLE DATA; Schema: openads; Owner: postgres
+-- Data for Name: parcelles; Type: TABLE DATA; Schema: openads; Owner: lizmap
 --
 
 COPY openads.parcelles (id_parcelles, ccocom, ccodep, ccodir, ccopre, ccosec, dnupla, ident, ndeb, sdeb, nom, type, geom) FROM stdin;
@@ -6955,7 +6955,7 @@ COPY openads.parcelles (id_parcelles, ccocom, ccodep, ccodir, ccopre, ccosec, dn
 
 
 --
--- Data for Name: qgis_plugin; Type: TABLE DATA; Schema: openads; Owner: postgres
+-- Data for Name: qgis_plugin; Type: TABLE DATA; Schema: openads; Owner: lizmap
 --
 
 COPY openads.qgis_plugin (id, version, version_date, status) FROM stdin;
@@ -6964,49 +6964,49 @@ COPY openads.qgis_plugin (id, version, version_date, status) FROM stdin;
 
 
 --
--- Name: communes_id_communes_seq; Type: SEQUENCE SET; Schema: openads; Owner: postgres
+-- Name: communes_id_communes_seq; Type: SEQUENCE SET; Schema: openads; Owner: lizmap
 --
 
 SELECT pg_catalog.setval('openads.communes_id_communes_seq', 1, true);
 
 
 --
--- Name: contraintes_id_contraintes_seq; Type: SEQUENCE SET; Schema: openads; Owner: postgres
+-- Name: contraintes_id_contraintes_seq; Type: SEQUENCE SET; Schema: openads; Owner: lizmap
 --
 
 SELECT pg_catalog.setval('openads.contraintes_id_contraintes_seq', 64, true);
 
 
 --
--- Name: dossiers_openads_id_dossiers_openads_seq; Type: SEQUENCE SET; Schema: openads; Owner: postgres
+-- Name: dossiers_openads_id_dossiers_openads_seq; Type: SEQUENCE SET; Schema: openads; Owner: lizmap
 --
 
 SELECT pg_catalog.setval('openads.dossiers_openads_id_dossiers_openads_seq', 4, true);
 
 
 --
--- Name: dossiers_sig_id_dossiers_sig_seq; Type: SEQUENCE SET; Schema: openads; Owner: postgres
+-- Name: dossiers_sig_id_dossiers_sig_seq; Type: SEQUENCE SET; Schema: openads; Owner: lizmap
 --
 
 SELECT pg_catalog.setval('openads.dossiers_sig_id_dossiers_sig_seq', 1, false);
 
 
 --
--- Name: geo_contraintes_id_geo_contraintes_seq; Type: SEQUENCE SET; Schema: openads; Owner: postgres
+-- Name: geo_contraintes_id_geo_contraintes_seq; Type: SEQUENCE SET; Schema: openads; Owner: lizmap
 --
 
 SELECT pg_catalog.setval('openads.geo_contraintes_id_geo_contraintes_seq', 74, true);
 
 
 --
--- Name: parcelles_id_parcelles_seq; Type: SEQUENCE SET; Schema: openads; Owner: postgres
+-- Name: parcelles_id_parcelles_seq; Type: SEQUENCE SET; Schema: openads; Owner: lizmap
 --
 
 SELECT pg_catalog.setval('openads.parcelles_id_parcelles_seq', 6394, true);
 
 
 --
--- Name: communes communes_codeinsee_unique; Type: CONSTRAINT; Schema: openads; Owner: postgres
+-- Name: communes communes_codeinsee_unique; Type: CONSTRAINT; Schema: openads; Owner: lizmap
 --
 
 ALTER TABLE ONLY openads.communes
@@ -7014,7 +7014,7 @@ ALTER TABLE ONLY openads.communes
 
 
 --
--- Name: communes communes_pkey; Type: CONSTRAINT; Schema: openads; Owner: postgres
+-- Name: communes communes_pkey; Type: CONSTRAINT; Schema: openads; Owner: lizmap
 --
 
 ALTER TABLE ONLY openads.communes
@@ -7022,7 +7022,7 @@ ALTER TABLE ONLY openads.communes
 
 
 --
--- Name: contraintes contraintes_pkey; Type: CONSTRAINT; Schema: openads; Owner: postgres
+-- Name: contraintes contraintes_pkey; Type: CONSTRAINT; Schema: openads; Owner: lizmap
 --
 
 ALTER TABLE ONLY openads.contraintes
@@ -7030,7 +7030,7 @@ ALTER TABLE ONLY openads.contraintes
 
 
 --
--- Name: dossiers_openads dossiers_openads_numero_unique; Type: CONSTRAINT; Schema: openads; Owner: postgres
+-- Name: dossiers_openads dossiers_openads_numero_unique; Type: CONSTRAINT; Schema: openads; Owner: lizmap
 --
 
 ALTER TABLE ONLY openads.dossiers_openads
@@ -7038,7 +7038,7 @@ ALTER TABLE ONLY openads.dossiers_openads
 
 
 --
--- Name: dossiers_openads dossiers_openads_pkey; Type: CONSTRAINT; Schema: openads; Owner: postgres
+-- Name: dossiers_openads dossiers_openads_pkey; Type: CONSTRAINT; Schema: openads; Owner: lizmap
 --
 
 ALTER TABLE ONLY openads.dossiers_openads
@@ -7046,7 +7046,7 @@ ALTER TABLE ONLY openads.dossiers_openads
 
 
 --
--- Name: dossiers_sig dossiers_sig_numero_unique; Type: CONSTRAINT; Schema: openads; Owner: postgres
+-- Name: dossiers_sig dossiers_sig_numero_unique; Type: CONSTRAINT; Schema: openads; Owner: lizmap
 --
 
 ALTER TABLE ONLY openads.dossiers_sig
@@ -7054,7 +7054,7 @@ ALTER TABLE ONLY openads.dossiers_sig
 
 
 --
--- Name: dossiers_sig dossiers_sig_pkey; Type: CONSTRAINT; Schema: openads; Owner: postgres
+-- Name: dossiers_sig dossiers_sig_pkey; Type: CONSTRAINT; Schema: openads; Owner: lizmap
 --
 
 ALTER TABLE ONLY openads.dossiers_sig
@@ -7062,7 +7062,7 @@ ALTER TABLE ONLY openads.dossiers_sig
 
 
 --
--- Name: geo_contraintes geo_contraintes_pkey; Type: CONSTRAINT; Schema: openads; Owner: postgres
+-- Name: geo_contraintes geo_contraintes_pkey; Type: CONSTRAINT; Schema: openads; Owner: lizmap
 --
 
 ALTER TABLE ONLY openads.geo_contraintes
@@ -7070,7 +7070,7 @@ ALTER TABLE ONLY openads.geo_contraintes
 
 
 --
--- Name: parcelles parcelles_ident_unique; Type: CONSTRAINT; Schema: openads; Owner: postgres
+-- Name: parcelles parcelles_ident_unique; Type: CONSTRAINT; Schema: openads; Owner: lizmap
 --
 
 ALTER TABLE ONLY openads.parcelles
@@ -7078,7 +7078,7 @@ ALTER TABLE ONLY openads.parcelles
 
 
 --
--- Name: parcelles parcelles_pkey; Type: CONSTRAINT; Schema: openads; Owner: postgres
+-- Name: parcelles parcelles_pkey; Type: CONSTRAINT; Schema: openads; Owner: lizmap
 --
 
 ALTER TABLE ONLY openads.parcelles
@@ -7086,56 +7086,56 @@ ALTER TABLE ONLY openads.parcelles
 
 
 --
--- Name: communes_index_geom_gist; Type: INDEX; Schema: openads; Owner: postgres
+-- Name: communes_index_geom_gist; Type: INDEX; Schema: openads; Owner: lizmap
 --
 
 CREATE INDEX communes_index_geom_gist ON openads.communes USING gist (geom);
 
 
 --
--- Name: dossiers_openads_index_geom_gist; Type: INDEX; Schema: openads; Owner: postgres
+-- Name: dossiers_openads_index_geom_gist; Type: INDEX; Schema: openads; Owner: lizmap
 --
 
 CREATE INDEX dossiers_openads_index_geom_gist ON openads.dossiers_openads USING gist (geom);
 
 
 --
--- Name: dossiers_sig_index_geom_gist; Type: INDEX; Schema: openads; Owner: postgres
+-- Name: dossiers_sig_index_geom_gist; Type: INDEX; Schema: openads; Owner: lizmap
 --
 
 CREATE INDEX dossiers_sig_index_geom_gist ON openads.dossiers_sig USING gist (geom);
 
 
 --
--- Name: geo_contraintes_id_contraintes_idx; Type: INDEX; Schema: openads; Owner: postgres
+-- Name: geo_contraintes_id_contraintes_idx; Type: INDEX; Schema: openads; Owner: lizmap
 --
 
 CREATE INDEX geo_contraintes_id_contraintes_idx ON openads.geo_contraintes USING btree (id_contraintes);
 
 
 --
--- Name: geo_contraintes_index_geom_gist; Type: INDEX; Schema: openads; Owner: postgres
+-- Name: geo_contraintes_index_geom_gist; Type: INDEX; Schema: openads; Owner: lizmap
 --
 
 CREATE INDEX geo_contraintes_index_geom_gist ON openads.geo_contraintes USING gist (geom);
 
 
 --
--- Name: parcelles_index_geom_gist; Type: INDEX; Schema: openads; Owner: postgres
+-- Name: parcelles_index_geom_gist; Type: INDEX; Schema: openads; Owner: lizmap
 --
 
 CREATE INDEX parcelles_index_geom_gist ON openads.parcelles USING gist (geom);
 
 
 --
--- Name: qgis_plugin_id_idx; Type: INDEX; Schema: openads; Owner: postgres
+-- Name: qgis_plugin_id_idx; Type: INDEX; Schema: openads; Owner: lizmap
 --
 
 CREATE INDEX qgis_plugin_id_idx ON openads.qgis_plugin USING btree (id);
 
 
 --
--- Name: geo_contraintes geo_contraintes_fkey; Type: FK CONSTRAINT; Schema: openads; Owner: postgres
+-- Name: geo_contraintes geo_contraintes_fkey; Type: FK CONSTRAINT; Schema: openads; Owner: lizmap
 --
 
 ALTER TABLE ONLY openads.geo_contraintes
@@ -7143,6 +7143,6 @@ ALTER TABLE ONLY openads.geo_contraintes
 
 
 --
--- PostgreSQL database dump complete
+-- lizmapQL database dump complete
 --
 

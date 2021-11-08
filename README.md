@@ -49,18 +49,18 @@ BASEURL="http://lizmap.localhost/openads.php"
 ###
 
 # Test avec mauvais mot de passe
-RESULT=$(curl -s -X GET -H 'Content-Type: application/json' -u admin:badpassword "$BASEURL/services/openads~openads/parcelles/800016%20%20%200AK0145") && echo $RESULT
+RESULT=$(curl -s -X GET -H 'Content-Type: application/json' -u admin:badpassword "$BASEURL/services/openads~openads/parcelles/800016000AK0145") && echo $RESULT
 
 # Test avec bon login et bons ids_parcelles
-RESULT=$(curl -s -X GET -H 'Content-Type: application/json' -u admin:admin "$BASEURL/services/openads~openads/parcelles/800016%20%20%200AK0145") && echo $RESULT
+RESULT=$(curl -s -X GET -H 'Content-Type: application/json' -u admin:admin "$BASEURL/services/openads~openads/parcelles/800016000AK0145") && echo $RESULT
 
-# résultat
+# Résultat
 # {"parcelles":[{"parcelle":"800016   0AK0145","existe":"true","adresse":{"numero_voie":"0057  ","type_voie":"CHE","nom_voie":"CROISE DE LA JUSTICE      ","arrondissement":"016"}}]}
 
 # Test avec bon login et mauvais ids_parcelle
 RESULT=$(curl -s -X GET -H 'Content-Type: application/json' -u admin:admin "$BASEURL/services/openads~openads/parcelles/80016") && echo $RESULT
 
-# résultat
+# Résultat
 # {"code":0,"status":"error","message":"data not found for given ids."}
 
 # COMMUNES
@@ -68,7 +68,27 @@ RESULT=$(curl -s -X GET -H 'Content-Type: application/json' -u admin:admin "$BAS
 # Test requête communes avec code insee
 RESULT=$(curl -s -X GET -H 'Content-Type: application/json' -u admin:admin "$BASEURL/services/openads~openads/communes/80016/contraintes") && echo $RESULT
 
-# résultat
+# Résultat
 # {"contraintes":[{"contrainte":"64","groupe_contrainte":"Zonage","sous_groupe_contrainte":"ZOne urba","libelle":"Uec","texte":"Secteur urbain \u00e9conomique"},{"contrainte":"63","groupe_contrainte":"Zonage","sous_groupe_contrainte":"ZOne urba","libelle":"Uco","texte":"Secteur urbain de commerce"},{"contrainte":"51","groupe_contrainte":"Zonage","sous_groupe_contrainte":"ZOne urba","libelle":"1AUm","texte":"Zone \u00e0 urbaniser mixte habitat \/ \u00e9conomie"},{"contrainte":"57","groupe_contrainte":"Zonage","sous_groupe_contrainte":"ZOne urba","libelle":"2AUec","texte":"Zone \u00e0 urbaniser \u00e0 vocation \u00e9conomique"},{"contrainte":"36","groupe_contrainte":"Zonage","sous_groupe_contrainte":"ZOne urba","libelle":"Up","texte":"Secteur urbain en p\u00e9riph\u00e9rie du centre-ville et des anciens faubourgs d'Albert"},{"contrainte":"37","groupe_contrainte":"Zonage","sous_groupe_contrainte":"ZOne urba","libelle":"Nzh","texte":"Secteur naturel concern\u00e9 par des Zones \u00e0 Dominante Humide du SDAGE Artois-Picardie"},{"contrainte":"44","groupe_contrainte":"Zonage","sous_groupe_contrainte":"ZOne urba","libelle":"N","texte":"Zone naturelle"},{"contrainte":"43","groupe_contrainte":"Zonage","sous_groupe_contrainte":"ZOne urba","libelle":"Uag","texte":"Secteur urbain avec enjeux agricoles"},{"contrainte":"33","groupe_contrainte":"Zonage","sous_groupe_contrainte":"ZOne urba","libelle":"Ueq","texte":"Secteur urbain d'\u00e9quipements publics"},{"contrainte":"42","groupe_contrainte":"Zonage","sous_groupe_contrainte":"ZOne urba","libelle":"A","texte":"Zone agricole"},{"contrainte":"53","groupe_contrainte":"Zonage","sous_groupe_contrainte":"ZOne urba","libelle":"Uc","texte":"Secteur urbain compos\u00e9 majoritairement d'extensions r\u00e9centes"},{"contrainte":"62","groupe_contrainte":"Zonage","sous_groupe_contrainte":"ZOne urba","libelle":"Azh","texte":"Secteur agricole concern\u00e9 par des Zones \u00e0 Dominante Humide du SDAGE Artois-Picardie"},{"contrainte":"50","groupe_contrainte":"Zonage","sous_groupe_contrainte":"ZOne urba","libelle":"2AUh","texte":"Zone \u00e0 urbaniser \u00e0 vocation principale d'habitat"},{"contrainte":"52","groupe_contrainte":"Zonage","sous_groupe_contrainte":"ZOne urba","libelle":"Ap","texte":"Secteur agricole prot\u00e9g\u00e9"},{"contrainte":"46","groupe_contrainte":"Zonage","sous_groupe_contrainte":"ZOne urba","libelle":"1AUco","texte":"Zone \u00e0 urbaniser \u00e0 vocation commerciale"},{"contrainte":"45","groupe_contrainte":"Zonage","sous_groupe_contrainte":"ZOne urba","libelle":"Uf","texte":"Secteur urbain des anciens faubourgs autour du centre-ville d'Albert"},{"contrainte":"60","groupe_contrainte":"Zonage","sous_groupe_contrainte":"ZOne urba","libelle":"Uv","texte":"Secteur urbain du centre-ville d'Albert"},{"contrainte":"34","groupe_contrainte":"Zonage","sous_groupe_contrainte":"ZOne urba","libelle":"Neq","texte":"Secteur naturel d'\u00e9quipements publics"},{"contrainte":"41","groupe_contrainte":"Zonage","sous_groupe_contrainte":"ZOne urba","libelle":"1AUh","texte":"Zone \u00e0 urbaniser \u00e0 vocation principale d'habitat"}]}
+
+# DOSSIERS
+
+# Test du calcul de l'emprise
+RESULT=$(curl -s -X POST -H 'Content-Type: application/json' -d '{"parcelles":["800016000AT0031", "800016000AO0179"]}' -u admin:admin "$BASEURL/services/openads~openads/dossiers/444444/emprise") && echo $RESULT
+
+# Résultat
+# {"emprise":{"statut_calcul_emprise":"true"}}
+
+# Test du calcul du centroïde
+RESULT=$(curl -s -X POST -H 'Content-Type: application/json' -u admin:admin "$BASEURL/services/openads~openads/dossiers/444444/centroide") && echo $RESULT
+
+# Résultat
+# {"centroide":{"statut_calcul_centroide":"true","x":"674251.814403417","y":"6988657.01009032"}}
+
+# Test de récupération des contraintes
+RESULT=$(curl -s -X GET -H 'Content-Type: application/json' -u admin:admin "$BASEURL/services/openads~openads/dossiers/444444/contraintes") && echo $RESULT
+
+# Résultat
+# {"contraintes":[{"contrainte":"36","groupe_contrainte":"Zonage","sous_groupe_contrainte":"ZOne urba","libelle":"Up","texte":"Secteur urbain en p\u00e9riph\u00e9rie du centre-ville et des anciens faubourgs d'Albert"},{"contrainte":"45","groupe_contrainte":"Zonage","sous_groupe_contrainte":"ZOne urba","libelle":"Uf","texte":"Secteur urbain des anciens faubourgs autour du centre-ville d'Albert"}]}
 
 ```

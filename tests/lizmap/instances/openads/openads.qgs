@@ -1,4 +1,4 @@
-<qgis projectname="" saveDateTime="2021-10-28T15:06:44" saveUser="nboisteault" saveUserFull="nboisteault" version="3.16.12-Hannover">
+<qgis projectname="" saveDateTime="2021-11-08T18:00:01" saveUser="nboisteault" saveUserFull="nboisteault" version="3.16.13-Hannover">
   <homePath path=""></homePath>
   <title></title>
   <autotransaction active="0"></autotransaction>
@@ -33,16 +33,15 @@
     </layer-tree-layer>
     <custom-order enabled="0">
       <item>communes_4c09e9ef_fdc4_4595_abab_aee082c1a0b5</item>
-      <item>contraintes_10befdc9_46b8_4a20_a21e_17215b03b9b0</item>
       <item>dossiers_openads_8318a1cc_b183_42e7_826f_0b1bd85e253b</item>
       <item>parcelles_88f32525_ab1a_4894_87dd_777a8ed5c198</item>
     </custom-order>
   </layer-tree-group>
   <snapping-settings enabled="0" intersection-snapping="0" maxScale="0" minScale="0" mode="2" scaleDependencyMode="0" self-snapping="0" tolerance="12" type="1" unit="1">
     <individual-layer-settings>
-      <layer-setting enabled="0" id="parcelles_88f32525_ab1a_4894_87dd_777a8ed5c198" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="dossiers_openads_8318a1cc_b183_42e7_826f_0b1bd85e253b" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="communes_4c09e9ef_fdc4_4595_abab_aee082c1a0b5" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="parcelles_88f32525_ab1a_4894_87dd_777a8ed5c198" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
     </individual-layer-settings>
   </snapping-settings>
   <relations></relations>
@@ -272,6 +271,7 @@
       <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
         <DiagramCategory backgroundAlpha="255" backgroundColor="#ffffff" barWidth="5" diagramOrientation="Up" direction="0" enabled="0" height="15" labelPlacementMethod="XHeight" lineSizeScale="3x:0,0,0,0,0,0" lineSizeType="MM" maxScaleDenominator="1e+8" minScaleDenominator="0" minimumSize="0" opacity="1" penAlpha="255" penColor="#000000" penWidth="0" rotationOffset="270" scaleBasedVisibility="0" scaleDependency="Area" showAxis="1" sizeScale="3x:0,0,0,0,0,0" sizeType="MM" spacing="5" spacingUnit="MM" spacingUnitScale="3x:0,0,0,0,0,0" width="15">
           <fontProperties description="Ubuntu,11,-1,5,50,0,0,0,0,0" style=""></fontProperties>
+          <attribute color="#000000" field="" label=""></attribute>
           <axisSymbol>
             <symbol alpha="1" clip_to_extent="1" force_rhr="0" name="" type="line">
               <layer class="SimpleLine" enabled="1" locked="0" pass="0">
@@ -431,7 +431,7 @@
         <constraint constraints="0" exp_strength="0" field="ccodep" notnull_strength="0" unique_strength="0"></constraint>
         <constraint constraints="0" exp_strength="0" field="codcomm" notnull_strength="0" unique_strength="0"></constraint>
         <constraint constraints="0" exp_strength="0" field="nom" notnull_strength="0" unique_strength="0"></constraint>
-        <constraint constraints="2" exp_strength="0" field="codeinsee" notnull_strength="0" unique_strength="1"></constraint>
+        <constraint constraints="3" exp_strength="0" field="codeinsee" notnull_strength="1" unique_strength="1"></constraint>
         <constraint constraints="0" exp_strength="0" field="created_user" notnull_strength="0" unique_strength="0"></constraint>
         <constraint constraints="0" exp_strength="0" field="created_date" notnull_strength="0" unique_strength="0"></constraint>
         <constraint constraints="0" exp_strength="0" field="last_edited_user" notnull_strength="0" unique_strength="0"></constraint>
@@ -590,9 +590,7 @@ def my_form_open(dialog, layer, feature):
         </fixedRange>
       </temporal>
       <customproperties>
-        <property key="dualview/previewExpressions">
-          <value>"id_contraintes"</value>
-        </property>
+        <property key="dualview/previewExpressions" value="&quot;id_contraintes&quot;"></property>
       </customproperties>
       <geometryOptions geometryPrecision="0" removeDuplicateNodes="0">
         <activeChecks type="StringList">
@@ -700,7 +698,13 @@ def my_form_open(dialog, layer, feature):
       <previewExpression>"id_contraintes"</previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="0" simplifyMaxScale="1" styleCategories="AllStyleCategories" type="vector" wkbType="Polygon">
+    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="0" simplifyMaxScale="1" styleCategories="AllStyleCategories" type="vector" wkbType="MultiPolygon">
+      <extent>
+        <xmin>674184.2099999999627471</xmin>
+        <ymin>6988546.36000000033527613</ymin>
+        <xmax>674417.01000000000931323</xmax>
+        <ymax>6989451.83999999985098839</ymax>
+      </extent>
       <id>dossiers_openads_8318a1cc_b183_42e7_826f_0b1bd85e253b</id>
       <datasource>service='lizmap-openads' sslmode=disable key='id_dossiers_openads' estimatedmetadata=true checkPrimaryKeyUnicity='1' table="openads"."dossiers_openads" (geom)</datasource>
       <keywordList>
@@ -811,9 +815,7 @@ def my_form_open(dialog, layer, feature):
         <sizescale></sizescale>
       </renderer-v2>
       <customproperties>
-        <property key="dualview/previewExpressions">
-          <value>"id_dossiers_openads"</value>
-        </property>
+        <property key="dualview/previewExpressions" value="&quot;id_dossiers_openads&quot;"></property>
         <property key="embeddedWidgets/count" value="0"></property>
         <property key="variableNames"></property>
         <property key="variableValues"></property>
@@ -824,6 +826,7 @@ def my_form_open(dialog, layer, feature):
       <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
         <DiagramCategory backgroundAlpha="255" backgroundColor="#ffffff" barWidth="5" diagramOrientation="Up" direction="0" enabled="0" height="15" labelPlacementMethod="XHeight" lineSizeScale="3x:0,0,0,0,0,0" lineSizeType="MM" maxScaleDenominator="1e+8" minScaleDenominator="0" minimumSize="0" opacity="1" penAlpha="255" penColor="#000000" penWidth="0" rotationOffset="270" scaleBasedVisibility="0" scaleDependency="Area" showAxis="1" sizeScale="3x:0,0,0,0,0,0" sizeType="MM" spacing="5" spacingUnit="MM" spacingUnitScale="3x:0,0,0,0,0,0" width="15">
           <fontProperties description="Ubuntu,11,-1,5,50,0,0,0,0,0" style=""></fontProperties>
+          <attribute color="#000000" field="" label=""></attribute>
           <axisSymbol>
             <symbol alpha="1" clip_to_extent="1" force_rhr="0" name="" type="line">
               <layer class="SimpleLine" enabled="1" locked="0" pass="0">
@@ -952,7 +955,7 @@ def my_form_open(dialog, layer, feature):
       </defaults>
       <constraints>
         <constraint constraints="3" exp_strength="0" field="id_dossiers_openads" notnull_strength="1" unique_strength="1"></constraint>
-        <constraint constraints="0" exp_strength="0" field="codeinsee" notnull_strength="0" unique_strength="0"></constraint>
+        <constraint constraints="1" exp_strength="0" field="codeinsee" notnull_strength="1" unique_strength="0"></constraint>
         <constraint constraints="2" exp_strength="0" field="numero" notnull_strength="0" unique_strength="1"></constraint>
         <constraint constraints="0" exp_strength="0" field="parcelles" notnull_strength="0" unique_strength="0"></constraint>
         <constraint constraints="0" exp_strength="0" field="x" notnull_strength="0" unique_strength="0"></constraint>
@@ -1036,10 +1039,10 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="0" simplifyMaxScale="1" styleCategories="AllStyleCategories" type="vector" wkbType="MultiPolygon">
       <extent>
-        <xmin>672068.97999999998137355</xmin>
-        <ymin>6987044.96999999973922968</ymin>
-        <xmax>677916.73999999999068677</xmax>
-        <ymax>6991977.75999999977648258</ymax>
+        <xmin>672068.9375</xmin>
+        <ymin>6987044.5</ymin>
+        <xmax>677916.75</xmax>
+        <ymax>6991978</ymax>
       </extent>
       <id>parcelles_88f32525_ab1a_4894_87dd_777a8ed5c198</id>
       <datasource>service='lizmap-openads' sslmode=disable key='id_parcelles' estimatedmetadata=true checkPrimaryKeyUnicity='1' table="openads"."parcelles" (geom)</datasource>
@@ -1164,6 +1167,7 @@ def my_form_open(dialog, layer, feature):
       <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
         <DiagramCategory backgroundAlpha="255" backgroundColor="#ffffff" barWidth="5" diagramOrientation="Up" direction="0" enabled="0" height="15" labelPlacementMethod="XHeight" lineSizeScale="3x:0,0,0,0,0,0" lineSizeType="MM" maxScaleDenominator="1e+8" minScaleDenominator="0" minimumSize="0" opacity="1" penAlpha="255" penColor="#000000" penWidth="0" rotationOffset="270" scaleBasedVisibility="0" scaleDependency="Area" showAxis="1" sizeScale="3x:0,0,0,0,0,0" sizeType="MM" spacing="5" spacingUnit="MM" spacingUnitScale="3x:0,0,0,0,0,0" width="15">
           <fontProperties description="Ubuntu,11,-1,5,50,0,0,0,0,0" style=""></fontProperties>
+          <attribute color="#000000" field="" label=""></attribute>
           <axisSymbol>
             <symbol alpha="1" clip_to_extent="1" force_rhr="0" name="" type="line">
               <layer class="SimpleLine" enabled="1" locked="0" pass="0">
@@ -1376,7 +1380,7 @@ def my_form_open(dialog, layer, feature):
           <column hidden="0" name="ccopre" type="field" width="-1"></column>
           <column hidden="0" name="ccosec" type="field" width="-1"></column>
           <column hidden="0" name="dnupla" type="field" width="-1"></column>
-          <column hidden="0" name="ident" type="field" width="-1"></column>
+          <column hidden="0" name="ident" type="field" width="189"></column>
           <column hidden="0" name="ndeb" type="field" width="-1"></column>
           <column hidden="0" name="sdeb" type="field" width="-1"></column>
           <column hidden="0" name="nom" type="field" width="-1"></column>
@@ -1447,7 +1451,6 @@ def my_form_open(dialog, layer, feature):
   </projectlayers>
   <layerorder>
     <layer id="communes_4c09e9ef_fdc4_4595_abab_aee082c1a0b5"></layer>
-    <layer id="contraintes_10befdc9_46b8_4a20_a21e_17215b03b9b0"></layer>
     <layer id="dossiers_openads_8318a1cc_b183_42e7_826f_0b1bd85e253b"></layer>
     <layer id="parcelles_88f32525_ab1a_4894_87dd_777a8ed5c198"></layer>
   </layerorder>
@@ -1521,7 +1524,12 @@ def my_form_open(dialog, layer, feature):
     </Variables>
     <WCSLayers type="QStringList"></WCSLayers>
     <WCSUrl type="QString"></WCSUrl>
-    <WFSLayers type="QStringList"></WFSLayers>
+    <WFSLayers type="QStringList">
+      <value>parcelles_88f32525_ab1a_4894_87dd_777a8ed5c198</value>
+    </WFSLayers>
+    <WFSLayersPrecision>
+      <parcelles_88f32525_ab1a_4894_87dd_777a8ed5c198 type="int">8</parcelles_88f32525_ab1a_4894_87dd_777a8ed5c198>
+    </WFSLayersPrecision>
     <WFSTLayers>
       <Delete type="QStringList"></Delete>
       <Insert type="QStringList"></Insert>

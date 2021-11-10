@@ -12,38 +12,15 @@ namespace openADS;
 
 class Utils
 {
-    private $sql = array(
-        'parcelles' => array(
-            'get' => '
-                SELECT ident, ndeb, sdeb, type, nom, ccocom
-                FROM !schema!.parcelles
-                WHERE ident IN
-            ',
-            // 'add' => '
-            //     INSERT INTO openads.parcelles (
-            //         ...
-            //     )
-            //     VALUES ($1)
-            //     RETURNING id_parcelles
-            // ',
-        ),
-        'commune' => array(
-            'get' => '
-                SELECT DISTINCT c.id_contraintes, c.libelle, c."texte", c.groupe, c.sous_groupe
-                FROM !schema!.contraintes c
-                JOIN  !schema!.geo_contraintes gc ON c.id_contraintes=gc.id_contraintes
-                WHERE gc.codeinsee = $1;
-            ',
-        ),
-        'emprise' => array(
-            'get' => '
-                
-            ',
-        )
-
-    );
-
-    // Query database and return json data
+    /**
+     * Query database and return json data
+     *
+     * @param string        $sql
+     * @param Array|null    $params
+     * @param string        $profile
+     *
+     * @return Array
+     */
     private function query($sql, $params = null, $profile = 'openads')
     {
         $cnx = \jDb::getConnection($profile);

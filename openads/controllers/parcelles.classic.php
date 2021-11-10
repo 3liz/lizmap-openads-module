@@ -4,12 +4,17 @@ include jApp::getModulePath('openads').'controllers/apiController.php';
 
 class parcellesCtrl extends apiController
 {
-    public function index()
+    private $ids_list;
+    private $parcelle;
+    private $layer_name = 'parcelles';
+
+    // Define function check to group all checks
+    private function check()
     {
         // check authenticate
         // $auth_ok = $this->authenticate();
         // if (!$auth_ok) {
-        //     return $this->apiResponse(
+        //     return array(
         //         '401',
         //         'error',
         //         'Access denied, invalid login',
@@ -19,7 +24,7 @@ class parcellesCtrl extends apiController
         //check project
         list($code, $status, $message) = $this->checkProject();
         if ($status == 'error') {
-            return $this->apiResponse(
+            return array(
                 $code,
                 $status,
                 $message
@@ -29,18 +34,29 @@ class parcellesCtrl extends apiController
         // split string ids to array
         $ids_parcelles = trim($this->param('ids_parcelles', '-1'));
         if ($ids_parcelles == '-1') {
-            $ids_parcelles = '';
+            return array(
+                '400',
+                'error',
+                'wrong parameter ids_parcelles',
+            );
         }
 
-        $ids_list = explode(';', $ids_parcelles);
+        $this->ids_list = explode(';', $ids_parcelles);
+        if (empty($this->ids_list) || !is_array($this->ids_list)) {
+            return array(
+                '404',
+                'error',
+                'Ids given in URL wasn\'t found',
+            );
+        }
 
         // Utils (sql class)
         $utils = new \openADS\Utils();
 
         // Get Profile for  database connexion
-        $profile = $utils->getProfile($this->lizmap_project, 'parcelles');
+        $profile = $utils->getProfile($this->lizmap_project, $this->layer_name);
         if (!$profile) {
-            return $this->apiResponse(
+            return array(
                 '404',
                 'error',
                 'profile not found for this project.',
@@ -48,35 +64,46 @@ class parcellesCtrl extends apiController
         }
 
         // Get schema for sql query
-        $schema = $utils->getSchema($this->lizmap_project, 'parcelles');
+        $schema = $utils->getSchema($this->lizmap_project, $this->layer_name);
         if (!$schema) {
-            return $this->apiResponse(
+            return array(
                 '404',
                 'error',
-                'schema not found for this project.',
-            );
-        }
-
-        // Get Data
-        $data = $utils->getObjects(
-            'parcelles',
-            $schema,
-            $ids_list,
-            $profile
-        );
-        if (!$data) {
-            return $this->apiResponse(
-                '404',
-                'error',
-                'data not found for given ids.'
+                'schema not found for this project',
             );
         }
 
         // Parcelles class
-        $parcelle = new \openADS\Parcelles();
+        $this->parcelle = new \openADS\Parcelles($utils, $profile, $schema, $this->ids_list);
 
-        // format data
-        $result = $parcelle->initData($data, $ids_list);
+        return array('200', 'success', 'Project is a valid OpenADS project');
+    }
+
+    /**
+     * Get parcelles info from given parcelles ids
+     *
+     * @return jResponseJson
+     */
+    public function index()
+    {
+        //check project
+        list($code, $status, $message) = $this->check();
+        if ($status == 'error') {
+            return $this->apiResponse(
+                $code,
+                $status,
+                $message
+            );
+        }
+
+        list($code, $status, $result) = $this->parcelle->executeMethod('index');
+        if ($status == 'error') {
+            return $this->apiResponse(
+                $code,
+                $status,
+                $result
+            );
+        }
 
         // return result
         return $this->objectResponse($result);

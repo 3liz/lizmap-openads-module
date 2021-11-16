@@ -2,6 +2,7 @@ lizMap.events.on({
     uicreated: () => {
 
         const NOM_COUCHE_PARCELLES = 'parcelles';
+        const NOM_COUCHE_DOSSIER = 'dossiers_openads';
 
         // Fusion de deux emprises
         // Source : https://github.com/openlayers/openlayers/blob/v6.9.0/src/ol/extent.js#L318
@@ -75,6 +76,40 @@ lizMap.events.on({
                             'updateDrawing': index === (parcellesIds.length - 1) // update drawing only for last element
                         });
                     }
+                }
+            });
+        }
+
+        if (params && params.dossier) {
+            // Construction de la requête de récupération
+            // de l'emprise d'un dossier
+            const sentFormData = new FormData();
+
+            sentFormData.append('SERVICE', 'WFS');
+            sentFormData.append('VERSION', '1.1.0');
+            sentFormData.append('REQUEST', 'GetFeature');
+            sentFormData.append('TYPENAME', NOM_COUCHE_DOSSIER);
+            sentFormData.append('OUTPUTFORMAT', 'GeoJSON');
+            sentFormData.append('GEOMETRYNAME', 'extent');
+
+            sentFormData.append('EXP_FILTER', `"numero" = ${params.dossier}`);
+
+            fetch(`${lizUrls.wms}?repository=${lizUrls.params.repository}&project=${lizUrls.params.project}`, {
+                body: sentFormData,
+                method: "POST"
+            }).then(function (response) {
+                return response.json();
+            }).then(function (data) {
+                if (data?.features.length > 0) {
+                    let extent = data.features[0].bbox;
+
+                    // Conversion de l'extent de 4326 vers la projection de la carte
+                    // TODO : expose OL6 transformExtent in Lizmap
+                    // https://openlayers.org/en/latest/apidoc/module-ol_proj.html#.transformExtent
+                    const topleft = lizMap.mainLizmap.transform([extent[0], extent[1]], 'EPSG:4326', lizMap.mainLizmap.projection);
+                    const bottomright = lizMap.mainLizmap.transform([extent[2], extent[3]], 'EPSG:4326', lizMap.mainLizmap.projection);
+                    // Zoom sur l'emprise du dossier en paramètre
+                    lizMap.mainLizmap.map.getView().fit([topleft[0], topleft[1], bottomright[0], bottomright[1]]);
                 }
             });
         }

@@ -1,4 +1,4 @@
-<qgis projectname="" saveDateTime="2021-11-08T18:00:01" saveUser="nboisteault" saveUserFull="nboisteault" version="3.16.13-Hannover">
+<qgis projectname="" saveDateTime="2021-11-16T16:55:45" saveUser="nboisteault" saveUserFull="nboisteault" version="3.16.13-Hannover">
   <homePath path=""></homePath>
   <title></title>
   <autotransaction active="0"></autotransaction>
@@ -39,19 +39,19 @@
   </layer-tree-group>
   <snapping-settings enabled="0" intersection-snapping="0" maxScale="0" minScale="0" mode="2" scaleDependencyMode="0" self-snapping="0" tolerance="12" type="1" unit="1">
     <individual-layer-settings>
-      <layer-setting enabled="0" id="dossiers_openads_8318a1cc_b183_42e7_826f_0b1bd85e253b" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="0" id="communes_4c09e9ef_fdc4_4595_abab_aee082c1a0b5" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="parcelles_88f32525_ab1a_4894_87dd_777a8ed5c198" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="communes_4c09e9ef_fdc4_4595_abab_aee082c1a0b5" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="dossiers_openads_8318a1cc_b183_42e7_826f_0b1bd85e253b" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
     </individual-layer-settings>
   </snapping-settings>
   <relations></relations>
   <mapcanvas annotationsVisible="1" name="theMapCanvas">
     <units>meters</units>
     <extent>
-      <xmin>671880.66335545410402119</xmin>
-      <ymin>6984774.96379981189966202</ymin>
-      <xmax>678096.88456031843088567</xmax>
-      <ymax>6994245.05760880187153816</ymax>
+      <xmin>674241.53330572054255754</xmin>
+      <ymin>6985492.83941162005066872</ymin>
+      <xmax>676197.0533057200955227</xmax>
+      <ymax>6993098.87141161039471626</ymax>
     </extent>
     <rotation>0</rotation>
     <destinationsrs>
@@ -261,6 +261,9 @@
         <sizescale></sizescale>
       </renderer-v2>
       <customproperties>
+        <property key="dualview/previewExpressions">
+          <value>"nom"</value>
+        </property>
         <property key="embeddedWidgets/count" value="0"></property>
         <property key="variableNames"></property>
         <property key="variableValues"></property>
@@ -815,7 +818,9 @@ def my_form_open(dialog, layer, feature):
         <sizescale></sizescale>
       </renderer-v2>
       <customproperties>
-        <property key="dualview/previewExpressions" value="&quot;id_dossiers_openads&quot;"></property>
+        <property key="dualview/previewExpressions">
+          <value>"id_dossiers_openads"</value>
+        </property>
         <property key="embeddedWidgets/count" value="0"></property>
         <property key="variableNames"></property>
         <property key="variableValues"></property>
@@ -979,10 +984,10 @@ def my_form_open(dialog, layer, feature):
         <columns>
           <column hidden="0" name="id_dossiers_openads" type="field" width="189"></column>
           <column hidden="0" name="codeinsee" type="field" width="-1"></column>
-          <column hidden="0" name="numero" type="field" width="-1"></column>
-          <column hidden="0" name="parcelles" type="field" width="-1"></column>
-          <column hidden="0" name="x" type="field" width="-1"></column>
-          <column hidden="0" name="y" type="field" width="-1"></column>
+          <column hidden="0" name="numero" type="field" width="251"></column>
+          <column hidden="0" name="parcelles" type="field" width="492"></column>
+          <column hidden="0" name="x" type="field" width="161"></column>
+          <column hidden="0" name="y" type="field" width="283"></column>
           <column hidden="0" name="dossier_importe_geosig" type="field" width="508"></column>
           <column hidden="1" type="actions" width="-1"></column>
         </columns>
@@ -1154,9 +1159,7 @@ def my_form_open(dialog, layer, feature):
         <sizescale></sizescale>
       </renderer-v2>
       <customproperties>
-        <property key="dualview/previewExpressions">
-          <value>"nom"</value>
-        </property>
+        <property key="dualview/previewExpressions" value="&quot;nom&quot;"></property>
         <property key="embeddedWidgets/count" value="0"></property>
         <property key="variableNames"></property>
         <property key="variableValues"></property>
@@ -1525,9 +1528,11 @@ def my_form_open(dialog, layer, feature):
     <WCSLayers type="QStringList"></WCSLayers>
     <WCSUrl type="QString"></WCSUrl>
     <WFSLayers type="QStringList">
+      <value>dossiers_openads_8318a1cc_b183_42e7_826f_0b1bd85e253b</value>
       <value>parcelles_88f32525_ab1a_4894_87dd_777a8ed5c198</value>
     </WFSLayers>
     <WFSLayersPrecision>
+      <dossiers_openads_8318a1cc_b183_42e7_826f_0b1bd85e253b type="int">8</dossiers_openads_8318a1cc_b183_42e7_826f_0b1bd85e253b>
       <parcelles_88f32525_ab1a_4894_87dd_777a8ed5c198 type="int">8</parcelles_88f32525_ab1a_4894_87dd_777a8ed5c198>
     </WFSLayersPrecision>
     <WFSTLayers>
@@ -1622,7 +1627,7 @@ def my_form_open(dialog, layer, feature):
   <Bookmarks></Bookmarks>
   <ProjectViewSettings UseProjectScales="0">
     <Scales></Scales>
-    <DefaultViewExtent xmax="679792.56193614425137639" xmin="670184.98597962828353047" ymax="6994245.05760880187153816" ymin="6984774.96379981189966202">
+    <DefaultViewExtent xmax="682153.05860033154021949" xmin="668285.52801110909786075" ymax="6993098.87141161039471626" ymin="6985492.83941162005066872">
       <spatialrefsys>
         <wkt>PROJCS["RGF93 / Lambert-93",GEOGCS["RGF93",DATUM["Reseau_Geodesique_Francais_1993",SPHEROID["GRS 1980",6378137,298.257222101,AUTHORITY["EPSG","7019"]],TOWGS84[0,0,0,0,0,0,0],AUTHORITY["EPSG","6171"]],PRIMEM["Greenwich",0,AUTHORITY["EPSG","8901"]],UNIT["degree",0.0174532925199433,AUTHORITY["EPSG","9122"]],AUTHORITY["EPSG","4171"]],PROJECTION["Lambert_Conformal_Conic_2SP"],PARAMETER["standard_parallel_1",49],PARAMETER["standard_parallel_2",44],PARAMETER["latitude_of_origin",46.5],PARAMETER["central_meridian",3],PARAMETER["false_easting",700000],PARAMETER["false_northing",6600000],UNIT["metre",1,AUTHORITY["EPSG","9001"]],AXIS["X",EAST],AXIS["Y",NORTH],AUTHORITY["EPSG","2154"]]</wkt>
         <proj4>+proj=lcc +lat_1=49 +lat_2=44 +lat_0=46.5 +lon_0=3 +x_0=700000 +y_0=6600000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs</proj4>

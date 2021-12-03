@@ -38,3 +38,14 @@ au lieu des identifiants classiques (hôte, port, nom de la base de donnée, log
 ```bash
 psql service=lizmap-openads
 ```
+
+## Tests des requêtes API
+
+Avec `pytest` vous pouvez tester automatiquements les requêtes vers l'API openads:
+
+```bash
+# In a venv, it's better, but this is out of scope
+pip install -r requirements/tests.txt
+cd tests/request_test
+pytest
+pytest -s -v

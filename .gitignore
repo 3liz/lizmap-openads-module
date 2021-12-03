@@ -8,6 +8,7 @@
 *.pyc
 .venv
 venv
+env
 
 # PHP
 .php_cs.cache

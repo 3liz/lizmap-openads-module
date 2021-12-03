@@ -27,6 +27,7 @@ php lizmap/install/installer.php
 ```
 
 ## Tester l'API
+###Toutes les requêtes suivantes sont toutes tester via les [tests unitaires](tests/)
 
 Vous pouvez ensuite tester avec `curl` et une authentification basique.
 ```bash
@@ -54,7 +55,7 @@ RESULT=$(curl -s -X GET -H 'Content-Type: application/json' -u admin:badpassword
 # Test avec bon login et bons ids_parcelles
 RESULT=$(curl -s -X GET -H 'Content-Type: application/json' -u admin:admin "$BASEURL/services/openads~openads/parcelles/800016000AK0145") && echo $RESULT
 # Exemple de résultat
-# {"parcelles":[{"parcelle":"800016   0AK0145","existe":"true","adresse":{"numero_voie":"0057  ","type_voie":"CHE","nom_voie":"CROISE DE LA JUSTICE      ","arrondissement":"016"}}]}
+# {"parcelles":[{"parcelle":"800016000AK0145","existe":"true","adresse":{"numero_voie":"0057  ","type_voie":"CHE","nom_voie":"CROISE DE LA JUSTICE      ","arrondissement":"016"}}]}
 
 # Test avec bon login et mauvais ids_parcelle
 RESULT=$(curl -s -X GET -H 'Content-Type: application/json' -u admin:admin "$BASEURL/services/openads~openads/parcelles/80016") && echo $RESULT

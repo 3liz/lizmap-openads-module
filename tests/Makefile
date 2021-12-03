@@ -8,7 +8,7 @@ LIZMAP_DIR=$(shell pwd)/lizmap
 LIZMAP_USER_ID:=$(shell id -u)
 LIZMAP_USER_GID:=$(shell id -g)
 
-LIZMAP_VERSION_TAG:=3.5-dev
+LIZMAP_VERSION_TAG:=3.5
 QGIS_VERSION_TAG:=3.16
 POSTGIS_VERSION_TAG:=11-2.5
 
@@ -69,6 +69,6 @@ clean: stop
 
 # Pull images from github 3liz
 pull:
-	docker pull registry.3liz.net:5043/lizmap-web-client:${LIZMAP_VERSION_TAG}
+	docker pull 3liz/lizmap-web-client:${LIZMAP_VERSION_TAG}
 	docker pull 3liz/qgis-map-server:${QGIS_VERSION_TAG}
 	docker pull 3liz/postgis:${POSTGIS_VERSION_TAG}

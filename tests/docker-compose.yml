@@ -10,7 +10,7 @@ services:
     ports:
       - ${LZMPGPORT}:5432
   lizmap:
-    image: registry.3liz.net:5043/lizmap-web-client:${LIZMAP_VERSION_TAG}
+    image: 3liz/lizmap-web-client:${LIZMAP_VERSION_TAG}
     environment:
       LIZMAP_CACHEREDISDB: '1'
       LIZMAP_CACHEREDISHOST: redis

@@ -11,8 +11,9 @@ class parcellesCtrl extends apiController
     // Define function check to group all checks
     private function check()
     {
+        // authenticate
+        $auth_ok = $this->authenticate();
         // check authenticate
-        // $auth_ok = $this->authenticate();
         // if (!$auth_ok) {
         //     return array(
         //         '401',

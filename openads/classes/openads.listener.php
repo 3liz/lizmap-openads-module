@@ -23,9 +23,18 @@ class openadsListener extends jEventListener
 
         $js = [jUrl::get('jelix~www:getfile', array('targetmodule' => 'openads', 'file' => 'openads.js'))];
 
+        $customProjectVariables = $p->getCustomProjectVariables();
+
+        if($customProjectVariables && $customProjectVariables['openads_url_ads']){
+            $jscode = array('const openads_url_ads = "'.$customProjectVariables['openads_url_ads'].'";');
+        }else{
+            $jscode = array('console.warn(`La variable "openads_url_ads" doit être définie dans votre projet QGIS.`);');
+        }
+
         $event->add(
             array(
                 'js' => $js,
+                'jscode' => $jscode
             )
         );
     }

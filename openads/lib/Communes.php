@@ -16,17 +16,18 @@ class Communes
         $this->schema = $schema;
         $this->id_commune = $id_commune;
     }
+
     /**
-     * Function to transform the data into JSON
+     * Function to transform the data into JSON.
      *
-     * @param Array|string  $data
-     * @param string        $method
+     * @param array|string $data
+     * @param string       $method
      *
-     * @return Array
+     * @return array
      */
     public function formatData($data, $method)
     {
-        if ($method=='contraintes' && is_array($data)) {
+        if ($method == 'contraintes' && is_array($data)) {
             // formatted data array
             $data_result = array('contraintes' => array());
 
@@ -48,38 +49,39 @@ class Communes
             return array('200', 'success', $data_result);
         }
 
-        return array('500', 'error' , 'Error occured while formating data');
+        return array('500', 'error', 'Error occured while formating data');
     }
 
     /**
-     * Function to get SQL for given method
+     * Function to get SQL for given method.
      *
-     * @param string       $method
-     * @param Array|null   $body
+     * @param string     $method
+     * @param null|array $body
      *
-     * @return string|null      $sql
+     * @return null|string $sql
      */
     protected function getSql($method)
     {
         $sql = null;
         if ($method == 'contraintes') {
-            $sql = "
+            $sql = '
                 SELECT DISTINCT c.id_contraintes, c.libelle, c.texte, c.groupe, c.sous_groupe
                 FROM !schema!.contraintes c
                 JOIN  !schema!.geo_contraintes gc ON c.id_contraintes=gc.id_contraintes
                 WHERE gc.codeinsee = $1::text;
-            ";
+            ';
         }
+
         return $sql;
     }
 
     /**
-     * Function to run some action in the database
+     * Function to run some action in the database.
      *
-     * @param string       $method
-     * @param Array|null   $body
+     * @param string     $method
+     * @param null|array $body
      *
-     * @return Array
+     * @return array
      */
     protected function runDataBaseAction($method)
     {
@@ -95,7 +97,7 @@ class Communes
             return array(
                 '500',
                 'error',
-                'No SQL query found'
+                'No SQL query found',
             );
         }
         list($status, $msgError, $data) = $this->utils->execQuery($sql, $this->schema, $this->profile, $messages[$method], $params);
@@ -112,7 +114,7 @@ class Communes
             return array(
                 '500',
                 'error',
-                'No data found ' . $messages[$method]
+                'No data found ' . $messages[$method],
             );
         }
 
@@ -120,21 +122,21 @@ class Communes
     }
 
     /**
-     * Function to use runDatabaseAction and formatData with given method
+     * Function to use runDatabaseAction and formatData with given method.
      *
-     * @param string       $method
-     * @param Array|null   $body
+     * @param string     $method
+     * @param null|array $body
      *
-     * @return Array
+     * @return array
      */
     public function executeMethod($method = 'contraintes')
     {
-        list($code, $status, $result) =  $this->runDatabaseAction($method);
+        list($code, $status, $result) = $this->runDatabaseAction($method);
         if ($status == 'error') {
             return array(
                 $code,
                 $status,
-                $result
+                $result,
             );
         }
 
@@ -144,7 +146,7 @@ class Communes
             return array(
                 $code,
                 $status,
-                $result
+                $result,
             );
         }
 

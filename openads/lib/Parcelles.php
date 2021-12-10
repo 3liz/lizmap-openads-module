@@ -18,14 +18,14 @@ class Parcelles
     }
 
     /**
-     * Function to transform the data into JSON
+     * Function to transform the data into JSON.
      *
-     * @param Array|string  $data
-     * @param string        $method
+     * @param array|string $data
+     * @param string       $method
      *
-     * @return Array
+     * @return array
      */
-    public function formatData($data, $method='index')
+    public function formatData($data, $method = 'index')
     {
         if ($method == 'index' && is_array($data)) {
             // array for parcelles found
@@ -42,7 +42,7 @@ class Parcelles
                     // Format numero
                     $numero = $line->ndeb;
                     if (!empty($line->sdeb)) {
-                        $numero .= ' '.$line->sdeb;
+                        $numero .= ' ' . $line->sdeb;
                     }
 
                     array_push(
@@ -81,23 +81,23 @@ class Parcelles
             return array('200', 'success', $data_result);
         }
 
-        return array('500', 'error' , 'Error occured while formating data');
+        return array('500', 'error', 'Error occured while formating data');
     }
 
     /**
-     * Function to get SQL for given method
+     * Function to get SQL for given method.
      *
-     * @param string       $method
-     * @param Array|null   $body
+     * @param string     $method
+     * @param null|array $body
      *
-     * @return string|null      $sql
+     * @return null|string $sql
      */
-    protected function getSql($method='index')
+    protected function getSql($method = 'index')
     {
         $sql = null;
         if (is_array($this->ids_list) && $method == 'index') {
             $params = '';
-            for ($i = 1; $i <= count($this->ids_list); $i++) {
+            for ($i = 1; $i <= count($this->ids_list); ++$i) {
                 if ($i == 1) {
                     $params .= '$' . $i;
                 } else {
@@ -107,21 +107,22 @@ class Parcelles
             $sql = "
                 SELECT ident, ndeb, sdeb, type, nom, ccocom
                 FROM !schema!.parcelles
-                WHERE ident IN ($params);
+                WHERE ident IN (${params});
             ";
         }
+
         return $sql;
     }
 
     /**
-     * Function to run some action in the database
+     * Function to run some action in the database.
      *
-     * @param string       $method
-     * @param Array|null   $body
+     * @param string     $method
+     * @param null|array $body
      *
-     * @return Array
+     * @return array
      */
-    protected function runDataBaseAction($method='index')
+    protected function runDataBaseAction($method = 'index')
     {
         // Construct params for SQL query
         $params = $this->ids_list;
@@ -135,7 +136,7 @@ class Parcelles
             return array(
                 '500',
                 'error',
-                'No SQL query found'
+                'No SQL query found',
             );
         }
         list($status, $msgError, $data) = $this->utils->execQuery($sql, $this->schema, $this->profile, $messages[$method], $params);
@@ -161,21 +162,21 @@ class Parcelles
     }
 
     /**
-     * Function to use runDatabaseAction and formatData with given method
+     * Function to use runDatabaseAction and formatData with given method.
      *
-     * @param string       $method
-     * @param Array|null   $body
+     * @param string     $method
+     * @param null|array $body
      *
-     * @return Array
+     * @return array
      */
     public function executeMethod($method)
     {
-        list($code, $status, $result) =  $this->runDatabaseAction($method);
+        list($code, $status, $result) = $this->runDatabaseAction($method);
         if ($status == 'error') {
             return array(
                 $code,
                 $status,
-                $result
+                $result,
             );
         }
 
@@ -185,7 +186,7 @@ class Parcelles
             return array(
                 $code,
                 $status,
-                $result
+                $result,
             );
         }
 

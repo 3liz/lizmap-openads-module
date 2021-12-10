@@ -1,6 +1,6 @@
 <?php
 
-include jApp::getModulePath('openads').'controllers/apiController.php';
+include jApp::getModulePath('openads') . 'controllers/apiController.php';
 
 class communesCtrl extends apiController
 {
@@ -28,7 +28,7 @@ class communesCtrl extends apiController
             return array(
                 $code,
                 $status,
-                $message
+                $message,
             );
         }
 
@@ -72,7 +72,7 @@ class communesCtrl extends apiController
     }
 
     /**
-     * Get constraints info from given town id
+     * Get constraints info from given town id.
      *
      * @return jResponseJson
      */

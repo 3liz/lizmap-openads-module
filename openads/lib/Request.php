@@ -24,7 +24,7 @@ class Request extends \jClassicRequest
 
         foreach ($this->mapping as $path => $realPathInfo) {
             $regexp = preg_replace('/(\\:([a-zA-Z_0-9]+))/', '(?P<${2}>[^/]+)', $path);
-            $regexp = '!^'.$regexp.'$!';
+            $regexp = '!^' . $regexp . '$!';
             if (preg_match($regexp, $pathInfo, $m)) {
                 if (is_array($realPathInfo)) {
                     if (!isset($realPathInfo[$_SERVER['REQUEST_METHOD']])) {

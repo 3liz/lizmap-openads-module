@@ -1,6 +1,6 @@
 <?php
 
-include \jApp::getModulePath('openads').'controllers/apiController.php';
+include \jApp::getModulePath('openads') . 'controllers/apiController.php';
 
 class dossiersCtrl extends apiController
 {
@@ -32,7 +32,7 @@ class dossiersCtrl extends apiController
             return array(
                 $code,
                 $status,
-                $message
+                $message,
             );
         }
 
@@ -79,7 +79,7 @@ class dossiersCtrl extends apiController
     }
 
     /**
-     * Calcul extent of a folder
+     * Calcul extent of a folder.
      *
      * @httpparam string Parcelles data in JSON
      *
@@ -102,7 +102,7 @@ class dossiersCtrl extends apiController
 
         // Get http POST parameters
         $body = $this->request->readHttpBody();
-        
+
         try {
             $params = json_decode($body);
         } catch (\Exception $e) {
@@ -133,12 +133,12 @@ class dossiersCtrl extends apiController
                 $result
             );
         }
-        
+
         return $this->objectResponse($result);
     }
 
     /**
-     * Calcul centroid of a folder
+     * Calcul centroid of a folder.
      *
      * @return jResponseJson
      */
@@ -166,13 +166,13 @@ class dossiersCtrl extends apiController
                 $result
             );
         }
-        
+
         // return format data for centroid response
         return $this->objectResponse($result);
     }
 
     /**
-     * Get constraints concerning a folder
+     * Get constraints concerning a folder.
      *
      * @return jResponseJson
      */
@@ -190,7 +190,7 @@ class dossiersCtrl extends apiController
 
         // set method used in class to sql and format data
         $this->method = 'contraintes';
-        
+
         // get data
         list($code, $status, $result) = $this->dossier->executeMethod($this->method);
         if ($status == 'error') {
@@ -200,7 +200,7 @@ class dossiersCtrl extends apiController
                 $result
             );
         }
-        
+
         // return format data for centroid response
         return $this->objectResponse($result);
     }

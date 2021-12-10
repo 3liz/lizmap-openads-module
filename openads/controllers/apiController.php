@@ -81,7 +81,7 @@ class apiController extends jController
                 return array(
                     '404',
                     'error',
-                    'Layer '.$lname.' missing in project',
+                    'Layer ' . $lname . ' missing in project',
                 );
             }
             $qgisLayer = $lizmap_project->getLayer($layer->id);
@@ -89,7 +89,7 @@ class apiController extends jController
                 return array(
                     '404',
                     'error',
-                    'Layer '.$lname.' missing in project',
+                    'Layer ' . $lname . ' missing in project',
                 );
             }
 
@@ -166,7 +166,7 @@ class apiController extends jController
         $http_code = '200';
         $rep->setHttpStatus($http_code, $this->http_codes[$http_code]);
         $rep->data = $data;
-        
+
         return $rep;
     }
 }

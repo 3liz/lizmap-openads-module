@@ -1,6 +1,6 @@
 <?php
 
-include jApp::getModulePath('openads').'controllers/apiController.php';
+include jApp::getModulePath('openads') . 'controllers/apiController.php';
 
 class parcellesCtrl extends apiController
 {
@@ -28,7 +28,7 @@ class parcellesCtrl extends apiController
             return array(
                 $code,
                 $status,
-                $message
+                $message,
             );
         }
 
@@ -81,7 +81,7 @@ class parcellesCtrl extends apiController
     }
 
     /**
-     * Get parcelles info from given parcelles ids
+     * Get parcelles info from given parcelles ids.
      *
      * @return jResponseJson
      */

@@ -13,13 +13,13 @@ namespace openADS;
 class Utils
 {
     /**
-     * Query database and return json data
+     * Query database and return json data.
      *
-     * @param string        $sql
-     * @param Array|null    $params
-     * @param string        $profile
+     * @param string     $sql
+     * @param null|array $params
+     * @param string     $profile
      *
-     * @return Array
+     * @return array
      */
     private function query($sql, $params = null, $profile = 'openads')
     {
@@ -33,24 +33,28 @@ class Utils
             $cnx->commit();
         } catch (\Exception $e) {
             $cnx->rollback();
+
             return array(
                 'error',
                 'A database error occured while executing the query',
-                null
+                null,
             );
         }
 
-        return array('success', 'Query executed with success' ,$data);
+        return array('success', 'Query executed with success', $data);
     }
 
     /**
      * Get a openads object.
      *
-     * @param string $key        The object to get. It corresponds to the table name. Ex: parcelles
-     * @param mixed  $get_params Parameters needed for the get SQL
-     * @param mixed  $schema
-     * @param mixed  $profile
-     * @param mixed  $method
+     * @param string     $key        The object to get. It corresponds to the table name. Ex: parcelles
+     * @param mixed      $get_params Parameters needed for the get SQL
+     * @param mixed      $schema
+     * @param mixed      $profile
+     * @param mixed      $method
+     * @param mixed      $sql
+     * @param mixed      $message
+     * @param null|mixed $params
      *
      * @return array or null
      */
@@ -59,20 +63,19 @@ class Utils
         // Get object
         $sql = str_replace('!schema!', $schema, $sql);
 
-
         list($status, $msgError, $data) = $this->query($sql, $params, $profile);
         if ($status == 'error') {
             return array(
                 'error',
                 $msgError . ' ' . $message,
-                null
+                null,
             );
         }
 
         return array(
             'success',
             '',
-            $data
+            $data,
         );
     }
 

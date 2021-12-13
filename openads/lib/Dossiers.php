@@ -18,6 +18,37 @@ class dossiers
     }
 
     /**
+     * Function to check that all parcelles was from the same municipality.
+     *
+     * @param array $parcelles list of parcelles
+     *
+     * @return array array(code, status, msg)
+     */
+    protected function checkCommune($parcelles)
+    {
+        $code_com = substr($parcelles[0], 0, 6);
+        $count = 0;
+        foreach ($parcelles as $parc) {
+            if (substr($parc, 0, 6) == $code_com) {
+                ++$count;
+            }
+        }
+        if ($count != count($parcelles)) {
+            return array(
+                '400',
+                'error',
+                'The parcelles do not all come from the same municipality',
+            );
+        }
+
+        return array(
+            '200',
+            'success',
+            'true',
+        );
+    }
+
+    /**
      * Function to transform the data into JSON.
      *
      * @param array|string $data
@@ -144,6 +175,14 @@ class dossiers
         // Construct params for SQL query
         $params = array();
         if ($action == 'insertDossier') {
+            list($code, $status, $msgError) = $this->checkCommune($body);
+            if ($status == 'error') {
+                return array(
+                    $code,
+                    $status,
+                    $msgError,
+                );
+            }
             $params = array_merge($params, $body);
             $params[] = $this->id_dossier;
         } elseif (in_array($action, array('centroide', 'contraintes'))) {

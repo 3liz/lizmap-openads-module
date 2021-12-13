@@ -125,7 +125,7 @@ class dossiersCtrl extends apiController
         }
 
         // use query to check if all parcelles exist and if all was in only one town
-        list($code, $status, $result) = $this->dossier->executeMethod('checkParcelles', $params->parcelles);
+        list($code, $status, $result) = $this->dossier->executeMethod('insertDossier', $params->parcelles);
         if ($status == 'error') {
             return $this->apiResponse(
                 $code,

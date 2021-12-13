@@ -85,10 +85,10 @@ class dossiers
      *
      * @return string $sql
      */
-    protected function getSql($action = 'checkParcelles', $body = null)
+    protected function getSql($action = 'insertDossier', $body = null)
     {
         $sql = null;
-        if (is_array($body) && in_array($action, array('checkParcelles', 'insertDossier'))) {
+        if (is_array($body) && $action == 'insertDossier') {
             $params = '';
             for ($i = 1; $i <= count($body); ++$i) {
                 if ($i == 1) {
@@ -97,47 +97,19 @@ class dossiers
                     $params .= ',$' . $i;
                 }
             }
-            if ($action == 'checkParcelles') {
-                // query to check if all parcelle exists and was in only one town
-                // always return response
-                $sql = "
-                    WITH number_parcelles(numbr_parc) AS(
-                        SELECT count(ident) FROM !schema!.parcelles
-                        WHERE ident IN (${params})
-                    ), parcelles_check AS(
-                        SELECT 
-                            CASE WHEN numbr_parc = " . count($body) . " THEN 'true'
-                            ELSE 'false' 
-                            END as find
-                        FROM number_parcelles		
-                    )
-                    SELECT 
-                        CASE 
-                            WHEN find IS NOT NULL AND find = 'true' THEN
-                                (SELECT distinct c.codeinsee 
-                                FROM !schema!.communes c
-                                JOIN !schema!.parcelles p ON st_intersects(c.geom,p.geom)
-                                WHERE p.ident IN (${params})) 
-                            ELSE 'false'
-                        END as \"result\"
-                    FROM parcelles_check;
-                ";
-            } elseif ($action == 'insertDossier') {
-                // Upsert folder
-                $param_id = '$' . (count($body) + 1);
-                $sql = "
-                INSERT INTO !schema!.dossiers_openads(numero, parcelles, codeinsee, geom)
-                    VALUES(${param_id}::text, ARRAY[${params}], 
-                        (SELECT codeinsee FROM !schema!.communes c JOIN !schema!.parcelles p ON ST_INTERSECTS(p.geom, c.geom) WHERE p.ident IN (${params}) LIMIT 1),
-                        (SELECT ST_Union(geom) FROM !schema!.parcelles WHERE ident IN (${params}))
-                    )
-                ON CONFLICT (numero) DO UPDATE SET
-                    parcelles = ARRAY[${params}],
-                    geom = (SELECT ST_Union(geom) FROM !schema!.parcelles WHERE ident IN (${params}))
-                    WHERE !schema!.dossiers_openads.numero = ${param_id}::text
-                RETURNING numero;
-                ";
-            }
+
+            // Upsert folder
+            $param_id = '$' . (count($body) + 1);
+            $sql = "
+            INSERT INTO !schema!.dossiers_openads(numero, parcelles, codeinsee)
+                VALUES(${param_id}::text, ARRAY[${params}], 
+                    (SELECT codeinsee FROM !schema!.communes c JOIN !schema!.parcelles p ON ST_INTERSECTS(p.geom, c.geom) WHERE p.ident IN (${params}) LIMIT 1)
+                )
+            ON CONFLICT (numero) DO UPDATE SET
+                parcelles = ARRAY[${params}]
+                WHERE !schema!.dossiers_openads.numero = ${param_id}::text
+            RETURNING numero, x, y;
+            ";
         } elseif ($action == 'centroide') {
             // create centroide for a folder
             $sql = '
@@ -171,9 +143,7 @@ class dossiers
     {
         // Construct params for SQL query
         $params = array();
-        if ($action == 'checkParcelles') {
-            $params = $body;
-        } elseif ($action == 'insertDossier') {
+        if ($action == 'insertDossier') {
             $params = array_merge($params, $body);
             $params[] = $this->id_dossier;
         } elseif (in_array($action, array('centroide', 'contraintes'))) {
@@ -182,7 +152,6 @@ class dossiers
 
         // Set messages
         $messages = array(
-            'checkParcelles' => 'to check the parcelles',
             'insertDossier' => 'to create/modify the dossier',
             'centroide' => 'to calculate the centroid',
             'contraintes' => 'to get constraints for given dossier',
@@ -238,20 +207,12 @@ class dossiers
             );
         }
 
-        if ($method == 'checkParcelles') {
+        if ($method == 'insertDossier') {
             $method = 'emprise';
-            if (count($result) != 1 || $result[0]->result == 'false') {
+            if ($result[0]->x == null || $result[0]->y == null) {
                 // return format data for centroid response
                 $result = 'false';
             } else {
-                list($code, $status, $result) = $this->runDatabaseAction('insertDossier', $body);
-                if ($status == 'error') {
-                    return array(
-                        $code,
-                        $status,
-                        $result,
-                    );
-                }
                 $result = 'true';
             }
         } elseif ($method == 'centroide') {

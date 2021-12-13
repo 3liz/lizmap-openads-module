@@ -126,10 +126,9 @@ class dossiers
                 // Upsert folder
                 $param_id = '$' . (count($body) + 1);
                 $sql = "
-                INSERT INTO !schema!.dossiers_openads(numero, parcelles, codeinsee, dossier_importe_geosig, geom)
+                INSERT INTO !schema!.dossiers_openads(numero, parcelles, codeinsee, geom)
                     VALUES(${param_id}::text, ARRAY[${params}], 
                         (SELECT codeinsee FROM !schema!.communes c JOIN !schema!.parcelles p ON ST_INTERSECTS(p.geom, c.geom) WHERE p.ident IN (${params}) LIMIT 1),
-                        (SELECT COUNT(numero) > 0 FROM !schema!.dossiers_sig WHERE numero = ${param_id}::text),
                         (SELECT ST_Union(geom) FROM !schema!.parcelles WHERE ident IN (${params}))
                     )
                 ON CONFLICT (numero) DO UPDATE SET

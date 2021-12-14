@@ -92,7 +92,7 @@ lizMap.events.on({
             sentFormData.append('OUTPUTFORMAT', 'GeoJSON');
             sentFormData.append('GEOMETRYNAME', 'extent');
 
-            sentFormData.append('EXP_FILTER', `"numero" = ${params.dossier}`);
+            sentFormData.append('EXP_FILTER', `"numero" = '${params.dossier}'`);
 
             fetch(`${lizUrls.wms}?repository=${lizUrls.params.repository}&project=${lizUrls.params.project}`, {
                 body: sentFormData,

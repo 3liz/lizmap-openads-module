@@ -79,8 +79,8 @@ class TestRequests(unittest.TestCase):
         check_response = {
             "centroide": {
                 "statut_calcul_centroide": "true",
-                "x": "674251.814403417",
-                "y": "6988657.01009031"
+                "x": "674225.667323187",
+                "y": "6988564.885"
             }
         }
         self.assertDictEqual(json.loads(req.text), check_response)

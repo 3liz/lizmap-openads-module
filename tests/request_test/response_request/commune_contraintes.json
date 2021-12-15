@@ -1,137 +1,137 @@
 {
-    "contraintes":[
+    "contraintes": [
         {
-            "contrainte":"1",
-            "groupe_contrainte":"Zone Urba",
-            "sous_groupe_contrainte":"Zone Urba 1",
-            "libelle":"Uc",
-            "texte":"Secteur urbain compos\u00e9 majoritairement d'extensions r\u00e9centes"
+            "contrainte": "1",
+            "groupe_contrainte": "Test Zone Urba",
+            "sous_groupe_contrainte": "TZU",
+            "libelle": "Uec",
+            "texte": "Secteur urbain \u00e9conomique"
         },
         {
-            "contrainte":"4",
-            "groupe_contrainte":"Zone Urba",
-            "sous_groupe_contrainte":"Zone Urba 1",
-            "libelle":"1AUco",
-            "texte":"Zone \u00e0 urbaniser \u00e0 vocation commerciale"
+            "contrainte": "5",
+            "groupe_contrainte": "Test Zone Urba",
+            "sous_groupe_contrainte": "TZU",
+            "libelle": "2AUec",
+            "texte": "Zone \u00e0 urbaniser \u00e0 vocation \u00e9conomique"
         },
         {
-            "contrainte":"5",
-            "groupe_contrainte":"Zone Urba",
-            "sous_groupe_contrainte":"Zone Urba 1",
-            "libelle":"Uco",
-            "texte":"Secteur urbain de commerce"
+            "contrainte": "6",
+            "groupe_contrainte": "Test Zone Urba",
+            "sous_groupe_contrainte": "TZU",
+            "libelle": "Neq",
+            "texte": "Secteur naturel d'\u00e9quipements publics"
         },
         {
-            "contrainte":"7",
-            "groupe_contrainte":"Zone Urba",
-            "sous_groupe_contrainte":"Zone Urba 1",
-            "libelle":"1AUh",
-            "texte":"Zone \u00e0 urbaniser \u00e0 vocation principale d'habitat"
+            "contrainte": "7",
+            "groupe_contrainte": "Test Zone Urba",
+            "sous_groupe_contrainte": "TZU",
+            "libelle": "N",
+            "texte": "Zone naturelle"
         },
         {
-            "contrainte":"8",
-            "groupe_contrainte":"Zone Urba",
-            "sous_groupe_contrainte":"Zone Urba 1",
-            "libelle":"Azh",
-            "texte":"Secteur agricole concern\u00e9 par des Zones \u00e0 Dominante Humide du SDAGE Artois-Picardie"
+            "contrainte": "8",
+            "groupe_contrainte": "Test Zone Urba",
+            "sous_groupe_contrainte": "TZU",
+            "libelle": "Uag",
+            "texte": "Secteur urbain avec enjeux agricoles"
         },
         {
-            "contrainte":"9",
-            "groupe_contrainte":"Zone Urba",
-            "sous_groupe_contrainte":"Zone Urba 1",
-            "libelle":"1AUm",
-            "texte":"Zone \u00e0 urbaniser mixte habitat \/ \u00e9conomie"
+            "contrainte": "9",
+            "groupe_contrainte": "Test Zone Urba",
+            "sous_groupe_contrainte": "TZU",
+            "libelle": "1AUm",
+            "texte": "Zone \u00e0 urbaniser mixte habitat \/ \u00e9conomie"
         },
         {
-            "contrainte":"10",
-            "groupe_contrainte":"Zone Urba",
-            "sous_groupe_contrainte":"Zone Urba 1",
-            "libelle":"Nzh",
-            "texte":"Secteur naturel concern\u00e9 par des Zones \u00e0 Dominante Humide du SDAGE Artois-Picardie"
+            "contrainte": "11",
+            "groupe_contrainte": "Test Zone Urba",
+            "sous_groupe_contrainte": "TZU",
+            "libelle": "Azh",
+            "texte": "Secteur agricole concern\u00e9 par des Zones \u00e0 Dominante Humide du SDAGE Artois-Picardie"
         },
         {
-            "contrainte":"11",
-            "groupe_contrainte":"Zone Urba",
-            "sous_groupe_contrainte":"Zone Urba 1",
-            "libelle":"N",
-            "texte":"Zone naturelle"
+            "contrainte": "13",
+            "groupe_contrainte": "Test Zone Urba",
+            "sous_groupe_contrainte": "TZU",
+            "libelle": "1AUco",
+            "texte": "Zone \u00e0 urbaniser \u00e0 vocation commerciale"
         },
         {
-            "contrainte":"12",
-            "groupe_contrainte":"Zone Urba",
-            "sous_groupe_contrainte":"Zone Urba 1",
-            "libelle":"Uec",
-            "texte":"Secteur urbain \u00e9conomique"
+            "contrainte": "14",
+            "groupe_contrainte": "Test Zone Urba",
+            "sous_groupe_contrainte": "TZU",
+            "libelle": "2AUh",
+            "texte": "Zone \u00e0 urbaniser \u00e0 vocation principale d'habitat"
         },
         {
-            "contrainte":"14",
-            "groupe_contrainte":"Zone Urba",
-            "sous_groupe_contrainte":"Zone Urba 1",
-            "libelle":"Up",
-            "texte":"Secteur urbain en p\u00e9riph\u00e9rie du centre-ville et des anciens faubourgs d'Albert"
-        },{
-            "contrainte":"18",
-            "groupe_contrainte":"Zone Urba",
-            "sous_groupe_contrainte":"Zone Urba 1",
-            "libelle":"Ueq",
-            "texte":"Secteur urbain d'\u00e9quipements publics"
+            "contrainte": "16",
+            "groupe_contrainte": "Test Zone Urba",
+            "sous_groupe_contrainte": "TZU",
+            "libelle": "Nzh",
+            "texte": "Secteur naturel concern\u00e9 par des Zones \u00e0 Dominante Humide du SDAGE Artois-Picardie"
         },
         {
-            "contrainte":"19",
-            "groupe_contrainte":"Zone Urba",
-            "sous_groupe_contrainte":"Zone Urba 1",
-            "libelle":"2AUh",
-            "texte":"Zone \u00e0 urbaniser \u00e0 vocation principale d'habitat"
-        
+            "contrainte": "20",
+            "groupe_contrainte": "Test Zone Urba",
+            "sous_groupe_contrainte": "TZU",
+            "libelle": "Ueq",
+            "texte": "Secteur urbain d'\u00e9quipements publics"
         },
         {
-            "contrainte":"21",
-            "groupe_contrainte":"Zone Urba",
-            "sous_groupe_contrainte":"Zone Urba 1",
-            "libelle":"2AUec",
-            "texte":"Zone \u00e0 urbaniser \u00e0 vocation \u00e9conomique"
+            "contrainte": "21",
+            "groupe_contrainte": "Test Zone Urba",
+            "sous_groupe_contrainte": "TZU",
+            "libelle": "A",
+            "texte": "Zone agricole"
         },
         {
-            "contrainte":"24",
-            "groupe_contrainte":"Zone Urba",
-            "sous_groupe_contrainte":"Zone Urba 1",
-            "libelle":"Neq",
-            "texte":"Secteur naturel d'\u00e9quipements publics"
+            "contrainte": "22",
+            "groupe_contrainte": "Test Zone Urba",
+            "sous_groupe_contrainte": "TZU",
+            "libelle": "Uf",
+            "texte": "Secteur urbain des anciens faubourgs autour du centre-ville d'Albert"
         },
         {
-            "contrainte":"26",
-            "groupe_contrainte":"Zone Urba",
-            "sous_groupe_contrainte":"Zone Urba 1",
-            "libelle":"Ap",
-            "texte":"Secteur agricole prot\u00e9g\u00e9"
+            "contrainte": "23",
+            "groupe_contrainte": "Test Zone Urba",
+            "sous_groupe_contrainte": "TZU",
+            "libelle": "Uco",
+            "texte": "Secteur urbain de commerce"
         },
         {
-            "contrainte":"27",
-            "groupe_contrainte":"Zone Urba",
-            "sous_groupe_contrainte":"Zone Urba 1",
-            "libelle":"Uv",
-            "texte":"Secteur urbain du centre-ville d'Albert"
+            "contrainte": "24",
+            "groupe_contrainte": "Test Zone Urba",
+            "sous_groupe_contrainte": "TZU",
+            "libelle": "Uc",
+            "texte": "Secteur urbain compos\u00e9 majoritairement d'extensions r\u00e9centes"
         },
         {
-            "contrainte":"29",
-            "groupe_contrainte":"Zone Urba",
-            "sous_groupe_contrainte":"Zone Urba 1",
-            "libelle":"Uf",
-            "texte":"Secteur urbain des anciens faubourgs autour du centre-ville d'Albert"
+            "contrainte": "25",
+            "groupe_contrainte": "Test Zone Urba",
+            "sous_groupe_contrainte": "TZU",
+            "libelle": "Up",
+            "texte": "Secteur urbain en p\u00e9riph\u00e9rie du centre-ville et des anciens faubourgs d'Albert"
         },
         {
-            "contrainte":"31",
-            "groupe_contrainte":"Zone Urba",
-            "sous_groupe_contrainte":"Zone Urba 1",
-            "libelle":"A",
-            "texte":"Zone agricole"
+            "contrainte": "26",
+            "groupe_contrainte": "Test Zone Urba",
+            "sous_groupe_contrainte": "TZU",
+            "libelle": "Uv",
+            "texte": "Secteur urbain du centre-ville d'Albert"
         },
         {
-            "contrainte":"32",
-            "groupe_contrainte":"Zone Urba",
-            "sous_groupe_contrainte":"Zone Urba 1",
-            "libelle":"Uag",
-            "texte":"Secteur urbain avec enjeux agricoles"
+            "contrainte": "29",
+            "groupe_contrainte": "Test Zone Urba",
+            "sous_groupe_contrainte": "TZU",
+            "libelle": "Ap",
+            "texte": "Secteur agricole prot\u00e9g\u00e9"
+        },
+        {
+            "contrainte": "31",
+            "groupe_contrainte": "Test Zone Urba",
+            "sous_groupe_contrainte": "TZU",
+            "libelle": "1AUh",
+            "texte": "Zone \u00e0 urbaniser \u00e0 vocation principale d'habitat"
         }
     ]
 }

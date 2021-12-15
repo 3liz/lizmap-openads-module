@@ -68,7 +68,7 @@ lizMap.events.on({
                     // Zoom sur l'emprise de la/les parcelles en paramètre
                     lizMap.mainLizmap.map.getView().fit([topleft[0], topleft[1], bottomright[0], bottomright[1]]);
 
-                    // Surbrillance
+                    // Sélection
                     for (let index = 0; index < parcellesIds.length; index++) {
                         lizMap.events.triggerEvent("layerfeatureselected", {
                             'featureType': NOM_COUCHE_PARCELLES,
@@ -101,19 +101,24 @@ lizMap.events.on({
                 return response.json();
             }).then(function (data) {
                 if (data?.features.length > 0) {
-                    const extent = data.features[0].bbox;
                     const fid = data.features[0].id.split(NOM_COUCHE_DOSSIER + '.')[1];
 
-                    // Conversion de l'extent de 4326 vers la projection de la carte
-                    // TODO : expose OL6 transformExtent in Lizmap
-                    // https://openlayers.org/en/latest/apidoc/module-ol_proj.html#.transformExtent
-                    const topleft = lizMap.mainLizmap.transform([extent[0], extent[1]], 'EPSG:4326', lizMap.mainLizmap.projection);
-                    const bottomright = lizMap.mainLizmap.transform([extent[2], extent[3]], 'EPSG:4326', lizMap.mainLizmap.projection);
-                    // Zoom sur l'emprise du dossier en paramètre
-                    lizMap.mainLizmap.map.getView().fit([topleft[0], topleft[1], bottomright[0], bottomright[1]]);
+                    // Edition du dossier si paramètre `parcelles` dans l'URL
+                    // Sinon zoom et sélection du dossier
+                    if (params.parcelles) {
+                        lizMap.launchEdition(lizMap.config.layers[NOM_COUCHE_DOSSIER]['id'], fid, null);
+                    } else {
+                        const extent = data.features[0].bbox;
 
-                    // Sélection s'il n'y a pas de paramètre `parcelles` dans l'URL
-                    if (!params.parcelles) {
+                        // Conversion de l'extent de 4326 vers la projection de la carte
+                        // TODO : expose OL6 transformExtent in Lizmap
+                        // https://openlayers.org/en/latest/apidoc/module-ol_proj.html#.transformExtent
+                        const topleft = lizMap.mainLizmap.transform([extent[0], extent[1]], 'EPSG:4326', lizMap.mainLizmap.projection);
+                        const bottomright = lizMap.mainLizmap.transform([extent[2], extent[3]], 'EPSG:4326', lizMap.mainLizmap.projection);
+                        // Zoom sur l'emprise du dossier en paramètre
+                        lizMap.mainLizmap.map.getView().fit([topleft[0], topleft[1], bottomright[0], bottomright[1]]);
+
+                        // Sélection
                         lizMap.events.triggerEvent("layerfeatureselected",
                             { 'featureType': NOM_COUCHE_DOSSIER, 'fid': fid, 'updateDrawing': true }
                         );

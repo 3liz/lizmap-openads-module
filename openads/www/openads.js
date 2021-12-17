@@ -76,6 +76,8 @@ lizMap.events.on({
                             'updateDrawing': index === (parcellesIds.length - 1) // update drawing only for last element
                         });
                     }
+                } else {
+                    lizMap.addMessage('Aucune parcelle trouvée', 'info', true);
                 }
             });
         }
@@ -123,6 +125,8 @@ lizMap.events.on({
                             { 'featureType': NOM_COUCHE_DOSSIER, 'fid': fid, 'updateDrawing': true }
                         );
                     }
+                } else {
+                    lizMap.addMessage('Aucun dossier trouvé', 'info', true);
                 }
             });
         }

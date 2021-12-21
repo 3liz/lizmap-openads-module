@@ -40,7 +40,7 @@ BEGIN
         ST_Union(geom) AS geom
     FROM openads.parcelles
     WHERE "ident" = ANY (NEW.parcelles);
-    IF record_dossier.geom IS NOT NULL AND cardinality(record_dossier.parcelles_id) = cardinality(NEW.parcelles) THEN
+    IF record_dossier.geom IS NOT NULL THEN
         RAISE NOTICE 'Insertion ou mise à jour dun dossier openads avec toutes les parcelles dans la base de données';
         NEW.geom = ST_Multi(ST_CollectionExtract(ST_MakeValid(record_dossier.geom), 3));
         NEW.x = ST_X(ST_PointOnSurface(NEW.geom));

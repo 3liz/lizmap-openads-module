@@ -108,7 +108,13 @@ lizMap.events.on({
                     // Edition du dossier si paramètre `parcelles` dans l'URL
                     // Sinon zoom et sélection du dossier
                     if (params.parcelles) {
-                        lizMap.launchEdition(lizMap.config.layers[NOM_COUCHE_DOSSIER]['id'], fid, null);
+                        // Si le dossier n'a pas de géométrie, on démarre l'édition en mode création
+                        // Sinon en mode modification
+                        if (data.features[0].geometry) {
+                            lizMap.launchEdition(lizMap.config.layers[NOM_COUCHE_DOSSIER]['id'], fid, null);
+                        } else {
+                            lizMap.launchEdition(lizMap.config.layers[NOM_COUCHE_DOSSIER]['id'], null, null);
+                        }
                     } else {
                         const extent = data.features[0].bbox;
 

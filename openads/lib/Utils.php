@@ -95,7 +95,7 @@ class Utils
             return null;
         }
         // get profile
-        return $qgisLayer->getDatasourceProfile();
+        return $qgisLayer->getDatasourceProfile(33);
     }
 
     /**

@@ -3,6 +3,7 @@
 declare(strict_types=1);
 $finder = PhpCsFixer\Finder::create()
           //->notPath('src/Symfony/Component/Translation/Tests/fixtures/resources.php')
+    ->notPath('install/openads.php')
     ->in(array(
         __DIR__ . '/openads',
     ))

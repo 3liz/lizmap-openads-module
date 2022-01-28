@@ -8,6 +8,8 @@ class dossiers
     protected $profile;
     protected $schema;
     protected $id_dossier;
+    protected $ccodep;
+    protected $ccocom;
 
     public function __construct($utils, $profile, $schema, $id_dossier)
     {
@@ -40,6 +42,9 @@ class dossiers
                 'The parcelles do not all come from the same municipality',
             );
         }
+
+        $this->ccodep = substr($parcelles[0], 0, 2);
+        $this->ccocom = substr($parcelles[0], 3, 3);
 
         return array(
             '200',
@@ -133,8 +138,8 @@ class dossiers
             $param_id = '$' . (count($body) + 1);
             $sql = "
             INSERT INTO !schema!.dossiers_openads(numero, parcelles, codeinsee)
-                VALUES(${param_id}::text, ARRAY[${params}], 
-                    (SELECT codeinsee FROM !schema!.communes c JOIN !schema!.parcelles p ON ST_INTERSECTS(p.geom, c.geom) WHERE p.ident IN (${params}) LIMIT 1)
+                VALUES(${param_id}::text, ARRAY[${params}],
+                    (SELECT codeinsee FROM !schema!.communes c WHERE ccodep = '{$this->ccodep}' AND ccocom = '{$this->ccocom}' LIMIT 1)
                 )
             ON CONFLICT (numero) DO UPDATE SET
                 parcelles = ARRAY[${params}]
@@ -145,7 +150,7 @@ class dossiers
             // create centroide for a folder
             $sql = '
                 UPDATE openads.dossiers_openads SET x=ST_X(ST_CENTROID(geom)), y=ST_Y(ST_CENTROID(geom))
-                WHERE numero=$1::text RETURNING x,y;         
+                WHERE numero=$1::text RETURNING x,y;
             ';
         } elseif ($action == 'contraintes') {
             // get constraints for a folder

@@ -138,8 +138,10 @@ class dossiers
             $param_id = '$' . (count($body) + 1);
             $sql = "
             INSERT INTO !schema!.dossiers_openads(numero, parcelles, codeinsee)
-                VALUES(${param_id}::text, ARRAY[${params}],
-                    (SELECT codeinsee FROM !schema!.communes c WHERE ccodep = '{$this->ccodep}' AND ccocom = '{$this->ccocom}' LIMIT 1)
+                VALUES(
+                    ${param_id}::text,
+                    ARRAY[${params}],
+                    (SELECT c.codeinsee FROM !schema!.communes c WHERE c.ccodep = '{$this->ccodep}' AND c.codcomm = '{$this->ccocom}' LIMIT 1)
                 )
             ON CONFLICT (numero) DO UPDATE SET
                 parcelles = ARRAY[${params}]

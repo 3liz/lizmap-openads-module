@@ -26,7 +26,7 @@ class dossiersCtrl extends apiController
         //     );
         // }
 
-        //check project
+        // check project
         list($code, $status, $message) = $this->checkProject();
         if ($status == 'error') {
             return array(

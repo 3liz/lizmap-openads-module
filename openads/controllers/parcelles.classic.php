@@ -22,7 +22,7 @@ class parcellesCtrl extends apiController
         //     );
         // }
 
-        //check project
+        // check project
         list($code, $status, $message) = $this->checkProject();
         if ($status == 'error') {
             return array(
@@ -87,7 +87,7 @@ class parcellesCtrl extends apiController
      */
     public function index()
     {
-        //check project
+        // check project
         list($code, $status, $message) = $this->check();
         if ($status == 'error') {
             return $this->apiResponse(

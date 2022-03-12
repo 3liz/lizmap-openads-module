@@ -1,18 +1,24 @@
-# lizmap-openads-module
+# Lizmap OpenADS
+
 [![Tests 🎳](https://github.com/3liz/lizmap-openads-module/actions/workflows/php_lint.yml/badge.svg)](https://github.com/3liz/lizmap-openads-module/actions/workflows/php_lint.yml)
 [![Packagist](https://img.shields.io/packagist/v/lizmap/lizmap-openads-module)](https://packagist.org/packages/lizmap/lizmap-openads-module)
 
-Module [Lizmap](https://www.lizmap.com/) pour liaison avec le logiciel [OpenADS](https://www.atreal.fr/applications/catalogue/logiciel-urbanisme).
+Module [Lizmap](https://www.lizmap.com/) pour une liaison avec le logiciel [OpenADS](https://www.atreal.fr/applications/catalogue/logiciel-urbanisme).
 
-# Installation
+## Installation
 
-## Module openADS pour Lizmap Web Client 
+### Module openADS pour Lizmap Web Client 
 
-NB: tous les chemins ci-dessous sont relatifs au dossier de Lizmap Web Client.
+NB : tous les chemins ci-dessous sont relatifs au dossier de Lizmap Web Client.
 
-* Copier le répertoire `openads` dans le répertoire `lizmap/lizmap-modules/` d'une instance Lizmap Web Client afin d'avoir un répertoire `lizmap/lizmap-modules/openads/` contenant les fichiers `module.xml`, `events.xml`, et d'autres répertoires.
+* Utiliser PHP `composer` pour une installation automatique depuis [Packagist](https://packagist.org/packages/lizmap/lizmap-openads-module).
 
-* Puis modifier le fichier `lizmap/var/config/localconfig.ini.php` en ajoutant `openads.access=2` dans la section `[modules]`, de cette façon
+* Copier le répertoire `openads` dans le répertoire `lizmap/lizmap-modules/` d'une instance Lizmap Web Client afin 
+  d'avoir un répertoire `lizmap/lizmap-modules/openads/` contenant les fichiers `module.xml`, `events.xml`,
+  et d'autres répertoires.
+
+* Puis modifier le fichier `lizmap/var/config/localconfig.ini.php` en ajoutant `openads.access=2` dans la section `[modules]`,
+  de cette façon
 
 ```ini
 [modules]
@@ -29,7 +35,8 @@ php lizmap/install/installer.php
 ```
 
 ## Tester l'API
-### **Toutes les requêtes suivantes sont testables via les [tests unitaires](tests/)**
+
+**Toutes les requêtes suivantes sont testables via les [tests unitaires](tests/)**
 
 Vous pouvez ensuite tester avec `curl` et une authentification basique.
 ```bash
@@ -37,7 +44,7 @@ Vous pouvez ensuite tester avec `curl` et une authentification basique.
 curl -u username:password https://exemple.com
 ```
 
-Dans les exemples suivant, nous utilisons comme ULR de base `http://lizmap.localhost/`:
+Dans les exemples suivants, nous utilisons comme URL de base `http://lizmap.localhost/`:
 
 * Define the API base URL:
 

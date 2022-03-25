@@ -160,7 +160,7 @@ class dossiers
                 SELECT DISTINCT c.id_contraintes, c.libelle, c."texte", c.groupe, c.sous_groupe
                 FROM openads.contraintes c
                 JOIN  openads.geo_contraintes gc ON c.id_contraintes=gc.id_contraintes
-                JOIN openads.dossiers_openads d ON ST_INTERSECTS(d.geom, gc.geom)
+                JOIN openads.dossiers_openads d ON (ST_INTERSECTS(d.geom, gc.geom) AND NOT ST_Touches(d.geom, gc.geom))
                 JOIN openads.communes com ON com.codeinsee=gc.codeinsee
                 WHERE d.numero = $1::text;
             ';

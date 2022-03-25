@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module xmlns="http://jelix.org/ns/module/1.0">
     <info id="openads3liz.com" name="openads" createdate="2021-10-20">
-        <version date="2022-03-11">1.0.0</version>
+        <version date="2022-03-25">1.0.1</version>
         <label lang="en_US">openads</label>
         <description lang="en_US" />
         <license URL="">All rights reserved</license>

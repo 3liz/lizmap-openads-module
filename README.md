@@ -5,33 +5,67 @@
 
 Module [Lizmap](https://www.lizmap.com/) pour une liaison avec le logiciel [OpenADS](https://www.atreal.fr/applications/catalogue/logiciel-urbanisme).
 
+Il nécessite Lizmap 3.5 ou version suivantes.
+
 ## Installation
 
-### Module openADS pour Lizmap Web Client 
+Il est recommandé d'installer le module avec [Composer](https://getcomposer.org),
+le gestionnaire de paquet pour PHP.
+Si vous ne pouvez pas l'utiliser, utilisez la méthode manuelle indiquée plus bas.
 
 NB : tous les chemins ci-dessous sont relatifs au dossier de Lizmap Web Client.
 
-* Utiliser PHP `composer` pour une installation automatique depuis [Packagist](https://packagist.org/packages/lizmap/lizmap-openads-module).
+### Installation automatique avec Composer
 
-* Copier le répertoire `openads` dans le répertoire `lizmap/lizmap-modules/` d'une instance Lizmap Web Client afin 
-  d'avoir un répertoire `lizmap/lizmap-modules/openads/` contenant les fichiers `module.xml`, `events.xml`,
-  et d'autres répertoires.
-
-* Puis modifier le fichier `lizmap/var/config/localconfig.ini.php` en ajoutant `openads.access=2` dans la section `[modules]`,
-  de cette façon
-
-```ini
-[modules]
-openads.access=2
-
-```
-
-* Ensuite exécuter l'installeur Lizmap
+* Dans `lizmap/my-packages`, créer le fichier `composer.json` si il n'existe pas déjà,
+  en copiant le fichier `composer.json.dist`, puis installer le module avec Composer :
 
 ```bash
-lizmap/install/set_rights.sh
-lizmap/install/clean_vartmp.sh
+cp -n lizmap/my-packages/composer.json.dist lizmap/my-packages/composer.json
+composer require --working-dir=lizmap/my-packages "lizmap/lizmap-openads-module"
+```
+
+* Si vous utilisez Lizmap 3.6 et suivante, exécuter ensuite la commande de configuration :
+
+```bash
+php lizmap/install/configurator.php
+```
+
+* Lancez enfin l'installation du module :
+
+```bash
 php lizmap/install/installer.php
+./lizmap/install/clean_vartmp.sh
+./lizmap/install/set_rights.sh
+```
+
+Go to the "Configuration" section.
+
+### Installation manuelle, sans Composer
+
+* Téléchargez l'archive sur la [page des version dans Github](https://github.com/3liz/lizmap-openads-module/releases).
+* Extrayez les fichiers de l'archive et copier le répertoire `openads` dans `lizmap/lizmap-modules/`.
+
+
+* Si vous utilisez Lizmap 3.5, éditez le fichier `lizmap/var/config/localconfig.ini.php` pour ajouter 
+  dans la section `[modules]`
+
+```ini
+openads.access=2
+```
+
+* Si vous utilisez Lizmap 3.6, lancez la commande 
+
+```bash
+php lizmap/install/configurator.php
+```
+
+* Pour toutes versions de Lizmap, lancez l'installateur :
+
+```bash
+php lizmap/install/installer.php
+./lizmap/install/clean_vartmp.sh
+./lizmap/install/set_rights.sh
 ```
 
 ## Tester l'API

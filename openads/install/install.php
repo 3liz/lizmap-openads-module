@@ -1,20 +1,16 @@
 <?php
 /**
  * @author    3liz
- * @copyright 2011-2021 3liz
+ * @copyright 2022 3liz
  *
  * @see      https://3liz.com
  *
  * @license    GPL 3
  */
-class openadsModuleInstaller extends jInstallerModule
+class openadsModuleInstaller extends  \Jelix\Installer\Module\Installer
 {
-    public function install()
+    public function install(Jelix\Installer\Module\API\InstallHelpers $helpers)
     {
 
-        // Copy entry point
-        // Needed in the upgrade process
-        // if the variable $mapping has changed
-        $this->createEntryPoint('openads.php', 'config.ini.php', 'openads');
     }
 }

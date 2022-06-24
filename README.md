@@ -25,18 +25,20 @@ cp -n lizmap/my-packages/composer.json.dist lizmap/my-packages/composer.json
 composer require --working-dir=lizmap/my-packages "lizmap/lizmap-openads-module"
 ```
 
-* Si vous utilisez Lizmap 3.6 et suivante, exécuter ensuite la commande de configuration :
+* puis aller dans le répertoire `lizmap/install/` pour lancer l'installateur
+
+Si vous utilisez Lizmap 3.6 et suivante, lancez d'abord la commande :
 
 ```bash
-php lizmap/install/configurator.php
+php configurator.php openads
 ```
 
 * Lancez enfin l'installation du module :
 
 ```bash
-php lizmap/install/installer.php
-./lizmap/install/clean_vartmp.sh
-./lizmap/install/set_rights.sh
+php installer.php
+./clean_vartmp.sh
+./set_rights.sh
 ```
 
 Go to the "Configuration" section.
@@ -57,7 +59,7 @@ openads.access=2
 * Si vous utilisez Lizmap 3.6, lancez la commande 
 
 ```bash
-php lizmap/install/configurator.php
+php lizmap/install/configurator.php openads
 ```
 
 * Pour toutes versions de Lizmap, lancez l'installateur :

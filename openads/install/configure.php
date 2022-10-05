@@ -11,6 +11,9 @@
 use Jelix\Routing\UrlMapping\EntryPointUrlModifier;
 use \Jelix\Routing\UrlMapping\MapEntry\MapInclude;
 
+/**
+ * Configurator for Lizmap 3.6+/Jelix 1.8+
+ */
 class openadsModuleConfigurator extends \Jelix\Installer\Module\Configurator {
 
     public function getDefaultParameters()
@@ -18,8 +21,32 @@ class openadsModuleConfigurator extends \Jelix\Installer\Module\Configurator {
         return array();
     }
 
+
+    public function declareUrls(EntryPointUrlModifier $registerOnEntryPoint)
+    {
+        $registerOnEntryPoint->havingName(
+            'openads',
+            array(
+                new MapInclude('urls.xml')
+            )
+        )
+        ;
+    }
+
+    public function getEntryPointsToCreate()
+    {
+        return array(
+            new \Jelix\Installer\Module\EntryPointToInstall(
+                'openads.php',
+                'openads/config.ini.php',
+                'openads.php',
+                'config/config.ini.php'
+            )
+        );
+    }
+
+
     function configure(\Jelix\Installer\Module\API\ConfigurationHelpers $helpers)
     {
-        $helpers->createEntryPoint('openads.php', 'openads', 'config.ini.php');
     }
 }

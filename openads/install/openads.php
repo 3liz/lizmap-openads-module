@@ -19,19 +19,19 @@ checkAppOpened();
 
 $mapping = array(
     '/services/:projectKey/parcelles/:ids_parcelles' => array(
-        'GET' => 'openads/parcelles/index',
+        'GET' => '/openads/parcelles/index',
     ),
     '/services/:projectKey/communes/:id_commune/contraintes' => array(
-        'GET' => 'openads/communes/contraintes',
+        'GET' => '/openads/communes/contraintes',
     ),
     '/services/:projectKey/dossiers/:id_dossier/emprise' => array(
-        'POST' => 'openads/dossiers/emprise',
+        'POST' => '/openads/dossiers/emprise',
     ),
     '/services/:projectKey/dossiers/:id_dossier/centroide' => array(
-        'POST' => 'openads/dossiers/centroide',
+        'POST' => '/openads/dossiers/centroide',
     ),
     '/services/:projectKey/dossiers/:id_dossier/contraintes' => array(
-        'GET' => 'openads/dossiers/contraintes',
+        'GET' => '/openads/dossiers/contraintes',
     ),
 );
 

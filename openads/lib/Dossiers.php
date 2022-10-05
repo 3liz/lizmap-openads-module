@@ -4,6 +4,9 @@ namespace openADS;
 
 class dossiers
 {
+    /**
+     * @var \openADS\Utils
+     */
     protected $utils;
     protected $profile;
     protected $schema;

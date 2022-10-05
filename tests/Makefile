@@ -7,6 +7,8 @@ LIZMAP_DIR=$(shell pwd)/lizmap
 
 LIZMAP_USER_ID:=$(shell id -u)
 LIZMAP_USER_GID:=$(shell id -g)
+LIZMAP_USER:=userphp
+LIZMAP_GROUP:=groupphp
 
 LIZMAP_VERSION_TAG:=3.5
 QGIS_VERSION_TAG:=3.16
@@ -14,7 +16,7 @@ POSTGIS_VERSION_TAG:=11-2.5
 
 QGIS_MAP_WORKERS:=1
 
-LIZMAP_PORT:=127.0.0.1:9090
+LIZMAP_PORT:=9090
 OWS_PORT:=127.0.0.1:9091
 LZMPGPORT:=127.0.0.1:9032
 
@@ -56,19 +58,30 @@ env: dirs
 		POSTGIS_VERSION_TAG=$(POSTGIS_VERSION_TAG)
 		EOF
 
-run: stop env
+run: stop
 	docker-compose up
 
-stop:
+stop: env
 	docker-compose down || true
 
 clean: stop
 	docker-compose down -v
 	rm -rf $(LIZMAP_DIR)/www/*
 	rm -rf $(LIZMAP_DIR)/var/*
+	rm -f .env
 
 # Pull images from github 3liz
 pull:
 	docker pull 3liz/lizmap-web-client:${LIZMAP_VERSION_TAG}
 	docker pull 3liz/qgis-map-server:${QGIS_VERSION_TAG}
 	docker pull 3liz/postgis:${POSTGIS_VERSION_TAG}
+
+shell:
+	docker compose exec -u ${LIZMAP_USER} lizmap /bin/sh -l
+
+shell-root:
+	docker compose exec lizmap /bin/sh -l
+
+setup-module:
+	docker compose exec -u ${LIZMAP_USER} lizmap php /www/lizmap/install/configurator.php -v openads
+	docker compose exec -u ${LIZMAP_USER} lizmap php /www/lizmap/install/installer.php -v

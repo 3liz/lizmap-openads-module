@@ -14,6 +14,9 @@ class openadsModuleUpgrader extends jInstallerModule
         // Copy entry point
         // Needed in the upgrade process
         // if the variable $mapping has changed
-        $this->createEntryPoint('openads.php', 'config.ini.php', 'openads');
+        $config = method_exists('jApp', 'appSystemPath') ?
+            'config/config.ini.php': 'config_1_6/config.ini.php';
+
+        $this->createEntryPoint('openads.php', $config, 'openads');
     }
 }

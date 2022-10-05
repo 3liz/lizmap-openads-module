@@ -8,6 +8,9 @@ class dossiersCtrl extends apiController
 
     private $layer_name = 'dossiers_openads';
 
+    /**
+     * @var \openADS\Dossiers
+     */
     private $dossier;
 
     private $method;
@@ -101,10 +104,14 @@ class dossiersCtrl extends apiController
         $this->method = 'emprise';
 
         // Get http POST parameters
-        $body = $this->request->readHttpBody();
-
         try {
-            $params = json_decode($body);
+            $params = $this->request->readHttpBody();
+            if (is_string($params)) {
+                // FIXME, Lizmap 3.6/jelix 1.8 decode automatically json data
+                // we could remove this when the module will not compatible
+                // with lizmap 3.5 anymore.
+                $params = json_decode($params, true);
+            }
         } catch (\Exception $e) {
             return $this->apiResponse(
                 '400',
@@ -114,7 +121,7 @@ class dossiersCtrl extends apiController
         }
 
         // check if parcelles is define in params
-        if (!property_exists($params, 'parcelles')) {
+        if (!array_key_exists('parcelles', $params)) {
             if ($status == 'error') {
                 return $this->apiResponse(
                     '400',
@@ -125,7 +132,7 @@ class dossiersCtrl extends apiController
         }
 
         // use query to check if all parcelles exist and if all was in only one town
-        list($code, $status, $result) = $this->dossier->executeMethod('insertDossier', $params->parcelles);
+        list($code, $status, $result) = $this->dossier->executeMethod('insertDossier', $params['parcelles']);
         if ($status == 'error') {
             return $this->apiResponse(
                 $code,

@@ -11,9 +11,17 @@
     make run
     ```
 
-- Un simple projet `openads` est present mais vous devez définir les droits dans l'administration Lizmap afin de le consulter.
+- Activer le module openads (lizmap 3.6+ uniquement)
 
-- Ouvrez votre navigateur à `http://localhost:9090`
+```bash
+make setup-module
+```
+
+- Ouvrez votre navigateur à `http://localhost:9090`, identifiez-vous dans
+  l'administration. login: admin, mot de passe : admin.
+- Aller dans la configuration des projets. Un simple projet `openads` est present 
+  mais vous devez définir les droits dans l'administration Lizmap afin de le consulter.
+
 
 Pour plus d'information, veuillez vous référer à la [documentation docker-compose](https://docs.docker.com/compose/)
 
@@ -49,3 +57,10 @@ pip install -r requirements/tests.txt
 cd tests/request_test
 pytest
 pytest -s -v
+```
+
+## Accès au conteneur lizmap
+
+Si vous voulez aller dans le conteneur lizmap pour y taper des commandes :
+`make shell`.
+

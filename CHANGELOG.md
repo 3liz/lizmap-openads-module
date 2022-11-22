@@ -1,8 +1,16 @@
 # Changelog
 
+<!--
+All notable changes to this project will be documented in this file.
+The format is based on [Keep a Changelog](https://keepachangelog.com/), 
+and this project adheres to [Semantic Versioning](https://semver.org/).
+-->
+
 ## Unreleased
 
-* experimental support of Lizmap 3.6
+### Added
+
+* Experimental support of Lizmap Web Client 3.6
 
 ## 1.0.1 - 2022-03-25
 
@@ -11,4 +19,3 @@
 ## 1.0.0 - 2022-03-11
 
 * Première version du module
- 

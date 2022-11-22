@@ -14,26 +14,16 @@ jobs:
 
     steps:
 
-      - name: Set env
-        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
-
       - uses: actions/checkout@v2
 
-      - name: Set up Python 3.10
-        uses: actions/setup-python@v2.3.1
-        with:
-          python-version: "3.10"
-
-      - name: Install Python requirements
-        run: pip install qgis-plugin-ci
-
-      - name : Get current changelog
-        run: qgis-plugin-ci changelog ${{ env.RELEASE_VERSION }} >> release.md
+      - name: Changelog
+        id: changelog
+        uses: 3liz/changelog-release@0.2.0
 
       - name: Create release on GitHub
-        uses: ncipollo/release-action@v1.9.0
+        uses: ncipollo/release-action@v1.11.1
         with:
-          bodyFile: release.md
+          body: ${{ steps.changelog.outputs.markdown }}
           token: ${{ secrets.BOT_HUB_TOKEN }}
 
       - name: Tweet

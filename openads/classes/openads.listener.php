@@ -27,7 +27,7 @@ class openadsListener extends jEventListener
 
         if (method_exists($p, 'getCustomProjectVariables')) {
             $customProjectVariables = $p->getCustomProjectVariables();
-            if ($customProjectVariables && $customProjectVariables['openads_url_ads']) {
+            if ($customProjectVariables && array_key_exists('openads_url_ads', $customProjectVariables)) {
                 $jscode = array('const openads_url_ads = "' . $customProjectVariables['openads_url_ads'] . '";');
             } else {
                 $jscode = array('console.warn(`La variable "openads_url_ads" doit être définie dans votre projet QGIS.`);');

@@ -5,7 +5,7 @@
 
 Module [Lizmap](https://www.lizmap.com/) pour une liaison avec le logiciel [OpenADS](https://www.atreal.fr/applications/catalogue/logiciel-urbanisme).
 
-Il nécessite Lizmap 3.5 ou version suivantes.
+Il nécessite Lizmap 3.5 ou versions suivantes.
 
 ## Installation
 

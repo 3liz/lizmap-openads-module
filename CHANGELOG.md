@@ -10,11 +10,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Added
 
-* Experimental support of Lizmap Web Client 3.6
+## 1.1.0 - 2022-12-15
+
+### Added
+
+* support of Lizmap Web Client 3.6
 
 ## 1.0.1 - 2022-03-25
 
-* Récupération des contraintes de dossier: exclusion des contraintes qui touchent le dossier
+* Récupération des contraintes de dossier : exclusion des contraintes qui touchent le dossier
 
 ## 1.0.0 - 2022-03-11
 

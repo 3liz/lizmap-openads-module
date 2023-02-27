@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Added
 
+* Increase required lizmap max version to 3.7
+
 ## 1.1.0 - 2022-12-15
 
 ### Added

@@ -10,9 +10,9 @@ LIZMAP_USER_GID:=$(shell id -g)
 LIZMAP_USER:=userphp
 LIZMAP_GROUP:=groupphp
 
-LIZMAP_VERSION_TAG:=3.5
-QGIS_VERSION_TAG:=3.16
-POSTGIS_VERSION_TAG:=11-2.5
+LIZMAP_VERSION_TAG:=3.7
+QGIS_VERSION_TAG:=3.28
+POSTGIS_VERSION_TAG:=14-3
 
 QGIS_MAP_WORKERS:=1
 
@@ -31,15 +31,16 @@ main:
 			stop:  stop docker and remove containers
 			clean: reset containers and remove lizmap configuration
 
-			Note: Un fichier d'environment pour docker-compose
+			Note: Un fichier d'environment pour docker compose
 			est crée à chaque invocation de 'run'.
-			Cela permet d'utiliser les commandes 'docker-compose'
+			Cela permet d'utiliser les commandes 'docker compose'
 			sans passer par le Makefile
 	EOF
 
 dirs:
 	@mkdir -p $(LIZMAP_DIR)/var/log/nginx \
 		      $(LIZMAP_DIR)/var/nginx-cache \
+			  $(LIZMAP_DIR)/qgis-server-plugins \
 		      $*
 
 env: dirs
@@ -58,14 +59,14 @@ env: dirs
 		POSTGIS_VERSION_TAG=$(POSTGIS_VERSION_TAG)
 		EOF
 
-run: stop
-	docker-compose up
+run: stop install-plugins
+	docker compose up
 
 stop: env
-	docker-compose down || true
+	docker compose down || true
 
 clean: stop
-	docker-compose down -v
+	docker compose down -v
 	rm -rf $(LIZMAP_DIR)/www/*
 	rm -rf $(LIZMAP_DIR)/var/*
 	rm -f .env
@@ -75,6 +76,23 @@ pull:
 	docker pull 3liz/lizmap-web-client:${LIZMAP_VERSION_TAG}
 	docker pull 3liz/qgis-map-server:${QGIS_VERSION_TAG}
 	docker pull 3liz/postgis:${POSTGIS_VERSION_TAG}
+
+install-plugins: dirs
+	@echo "Install QGIS server plugins"
+	docker run \
+		-u $(LIZMAP_USER_ID):$(LIZMAP_USER_GID) \
+		--rm -i \
+		-e QGSRV_SERVER_PLUGINPATH=/srv/plugins \
+		-e QGIS_PLUGIN_MANAGER_SOURCES_FILE=/tmp/sources-plugin-manager.list \
+		-e QGIS_PLUGIN_MANAGER_CACHE_DIR=/tmp/cache-plugin-manager \
+		-v $(LIZMAP_DIR)/qgis-server-plugins:/srv/plugins \
+		-v $(shell pwd)/:/src \
+		--entrypoint /bin/bash \
+		3liz/qgis-map-server:$(QGIS_VERSION_TAG) \
+		-c "\
+		    echo "https://packages.3liz.org/pub/server-plugins-repository/unstable/plugins.[VERSION].xml" > /tmp/sources-plugin-manager.list; \
+		    qgis-plugin-manager update; \
+		    qgis-plugin-manager install 'Lizmap server'"
 
 shell:
 	docker compose exec -u ${LIZMAP_USER} lizmap /bin/sh -l

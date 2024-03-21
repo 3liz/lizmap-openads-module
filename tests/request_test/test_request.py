@@ -79,7 +79,7 @@ class TestRequests(unittest.TestCase):
         check_response = {
             "centroide": {
                 "statut_calcul_centroide": "true",
-                "x": "674225.667323187",
+                "x": "674225.6673231872",
                 "y": "6988564.885"
             }
         }

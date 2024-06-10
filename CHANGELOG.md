@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## Unreleased
 
+## 1.1.2 - 2024-06-10
+
+* Increase required lizmap max version to 3.8
+
 ## 1.1.1 - 2024-03-21
 
 ### Added

@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module xmlns="http://jelix.org/ns/module/1.0">
     <info id="openads3liz.com" name="openads" createdate="2021-10-20">
-        <version date="2024-03-21">1.1.1</version>
+        <version date="2024-06-10">1.1.2</version>
         <label lang="en_US">openads</label>
         <description lang="en_US" />
         <license URL="">All rights reserved</license>
         <copyright>2021-2024 3liz</copyright>
         <creator name="3Liz" email="info@3liz.com" />
-        <!--<contributor name="hisname" email="hisemail@yoursite.undefined"  since="" role=""/>-->
         <homepageURL>https://3liz.com</homepageURL>
     </info>
     <dependencies>
-        <module name="lizmap" minversion="3.5.0" maxversion="3.7.*"/>
+        <module name="lizmap" minversion="3.5.0" maxversion="3.8.*"/>
     </dependencies>
     <autoload>
         <namespacePathMap name="openADS" dir="lib"/>

@@ -19,7 +19,7 @@ make setup-module
 
 - Ouvrez votre navigateur à `http://localhost:9090`, identifiez-vous dans
   l'administration. login: admin, mot de passe : admin.
-- Aller dans la configuration des projets. Un simple projet `openads` est present 
+- Aller dans la configuration des projets. Un simple projet `openads` est présent
   mais vous devez définir les droits dans l'administration Lizmap afin de le consulter.
 
 

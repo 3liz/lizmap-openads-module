@@ -64,3 +64,15 @@ pytest -s -v
 Si vous voulez aller dans le conteneur lizmap pour y taper des commandes :
 `make shell`.
 
+## Test manuel simple (compatibilité Lizmap)
+
+Il est possible de vérifier que l'entry point et les controllers ajoutés par le module fonctionnent en requêtant : 
+ - http://localhost:9090/openads.php/services/openads~openads/parcelles/800016000ZB0013 (json avec valeur)
+
+ - http://localhost:9090/openads.php/services/openads~openads/communes/4/contraintes (retourne un json avec erreur)
+
+Le js chargé par le module dans lizmap est aussi testable : 
+
+ - http://localhost:9090/index.php/view/map?repository=openads&parcelles=800016000ZB0013&project=openads : centre le carte sur un parcelle sélectionnée (coloré en jaune)
+
+  - http://localhost:9090/index.php/view/map?repository=openads&parcelles=foo&project=openads# : affiche un message "Aucune parcelle trouvée"

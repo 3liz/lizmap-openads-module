@@ -8,6 +8,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## Unreleased
 
+## 1.1.3 - 2025-09-30
+
+### Added
+
+* Support of Lizmap Web Client version 3.9
+* Test : describe some manual compatibility tests
+
 ## 1.1.2 - 2024-06-10
 
 ### Added

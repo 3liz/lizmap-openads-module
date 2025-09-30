@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module xmlns="http://jelix.org/ns/module/1.0">
     <info id="openads3liz.com" name="openads" createdate="2021-10-20">
-        <version date="2024-06-10">1.1.2</version>
+        <version date="2025-09-30">1.1.3</version>
         <label lang="en_US">openads</label>
         <description lang="en_US" />
         <license URL="">All rights reserved</license>
-        <copyright>2021-2024 3liz</copyright>
+        <copyright>2021-2025 3liz</copyright>
         <creator name="3Liz" email="info@3liz.com" />
         <homepageURL>https://3liz.com</homepageURL>
     </info>

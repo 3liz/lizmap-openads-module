@@ -107,7 +107,7 @@ class Parcelles
             $sql = "
                 SELECT ident, ndeb, sdeb, type, nom, ccocom
                 FROM !schema!.parcelles
-                WHERE ident IN (${params});
+                WHERE ident IN ({$params});
             ";
         }
 

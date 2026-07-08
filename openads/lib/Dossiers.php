@@ -142,13 +142,13 @@ class dossiers
             $sql = "
             INSERT INTO !schema!.dossiers_openads(numero, parcelles, codeinsee)
                 VALUES(
-                    ${param_id}::text,
-                    ARRAY[${params}],
+                    {$param_id}::text,
+                    ARRAY[{$params}],
                     (SELECT c.codeinsee FROM !schema!.communes c WHERE c.ccodep = '{$this->ccodep}' AND c.codcomm = '{$this->ccocom}' LIMIT 1)
                 )
             ON CONFLICT (numero) DO UPDATE SET
-                parcelles = ARRAY[${params}]
-                WHERE !schema!.dossiers_openads.numero = ${param_id}::text
+                parcelles = ARRAY[{$params}]
+                WHERE !schema!.dossiers_openads.numero = {$param_id}::text
             RETURNING numero, x, y;
             ";
         } elseif ($action == 'centroide') {
